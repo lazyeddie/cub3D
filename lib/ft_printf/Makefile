@@ -6,7 +6,7 @@
 #    By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 13:58:27 by aapostol          #+#    #+#              #
-#    Updated: 2023/10/11 16:46:36 by aapostol         ###   ########.fr        #
+#    Updated: 2023/10/23 12:59:13 by aapostol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,6 @@ OBJDIR	= obj/
 OBJPATH = $(addprefix $(OBJDIR), $(OBJ))
 
 # dependency files
-# DEPDIR	= dep/
 DEP		= $(patsubst %.c, %.d, $(SRC))
 DEPDIR	= dep/
 DEPPATH = $(addprefix $(DEPDIR), $(DEP))
@@ -64,9 +63,7 @@ $(OBJDIR)%.o: %.c
 
 $(DEPDIR):
 	@ mkdir -p $@
-
-$(DEPDIR)%.d: $(OBJDIR)%.d
-	@ mv $< $@
+	@ mv $(OBJDIR)*.d $@
 	
 -include $(DEPPATH)
 
