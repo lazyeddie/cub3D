@@ -4,6 +4,7 @@ int	main(int argc, char **argv)
 {
 	(void)argv;
 	if (argc == 2)
-		printf("hello world\n");
+		// parsing
+		create_window();
 	return (0);
 }

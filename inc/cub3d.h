@@ -6,4 +6,8 @@
 # include "ft_printf.h"
 # include "libft.h"
 
+// free_funcs.c
+void	*free_ptr(void *ptr);
+void	*free_array(char **arr);
+
 #endif
