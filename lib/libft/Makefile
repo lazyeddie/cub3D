@@ -6,7 +6,7 @@
 #    By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 13:28:56 by aapostol          #+#    #+#              #
-#    Updated: 2023/10/23 12:01:03 by aapostol         ###   ########.fr        #
+#    Updated: 2023/10/23 13:00:10 by aapostol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,9 +100,7 @@ $(OBJDIR)%.o: %.c
 
 $(DEPDIR):
 	@ mkdir -p $@
-	
-$(DEPDIR)%.d: $(OBJDIR)%.d
-	@ mv $< $@
+	@ mv $(OBJDIR)*.d $@
 
 -include $(DEPPATH)
 

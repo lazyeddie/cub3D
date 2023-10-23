@@ -2,8 +2,8 @@
 NAME		= cub3D
 
 # compiler
-CC			= cc -g
-CFLAGS		= -Werror -Wextra -Wall
+CC			= cc
+CFLAGS		= -Werror -Wextra -Wall -g
 DEPFLAGS	= -MP -MMD
 MLXFLAGS	= -lX11 -lXext -lmlx
 
@@ -18,18 +18,22 @@ MLX_NAME	= libmlx.a
 MLX			= $(MLX_DIR)$(MLX_NAME)
 
 # include
-# INC			=	-Lminilibx-linux -Llib
+INC			=	-I./inc -I./lib/ft_printf -I./lib/libft
 
-# include
-INC			=	-I. -I./lib/ft_printf -I./lib/libft
+# source files
+SRC			= 	main.c \
+				test.c
+SRCDIR		=	src/
 
-# sources
-SRC			= 	
-
-# objects
-OBJ			=	$(SRC:%.c=%.o)
+# object files
+OBJ			= $(SRC:%.c=%.o)
 OBJDIR		= obj/
 OBJPATH		= $(addprefix $(OBJDIR), $(OBJ))
+
+# dependency files
+DEP			= $(patsubst %.c, %.d, $(SRC))
+DEPDIR		= dep/
+DEPPATH 	= $(addprefix $(DEPDIR), $(DEP))
 
 # colors
 GREEN		='\033[32m'
@@ -52,7 +56,7 @@ $(LIB):
 
 $(MLX):
 	@echo $(GRAY) "Making MiniLibX..." $(RESET)
-	@make all -sC $(MLX_DIR)
+	@make -sC $(MLX_DIR)
 	@echo $(YELLOW) "MiniLibX ready" $(RESET)
 	@echo $(COLOR4) "test COLOR4" $(RESET)
 	@echo $(COLOR5) "test COLOR5" $(RESET)
@@ -60,26 +64,32 @@ $(MLX):
 	@echo $(COLOR7) "test COLOR7" $(RESET)
 	@echo $(COLOR8) "test COLOR8" $(RESET)
 
-$(NAME): $(OBJDIR) $(OBJPATH)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJPATH) $(MLX) $(LIB) $(INC) $(MLXFLAGS)
+$(NAME): $(OBJDIR) $(OBJPATH) $(DEPDIR)
+	@$(CC) $(CFLAGS) $(MLXFLAGS) $(INC) -o $(NAME) $(OBJPATH)
 	@echo $(GREEN) "cub3D ready" $(RESET)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) $(DEPFLAGS) $(INC) -c -o $@ $<
 
 $(OBJDIR): 
 	@mkdir -p $(OBJDIR)
 
+$(DEPDIR):
+	@mkdir -p $@
+	@mv $(OBJDIR)*.d $@
+
+-include $(DEPPATH)
+
 clean:
-	@rm -f $(OBJ)
-	@make clean -C $(LIB_DIR)libft
-	@make clean -C $(LIB_DIR)ft_printf
+	@rm -rf $(OBJDIR) $(DEPDIR)
+	@make clean -C $(LIB_DIR)
+	@make clean -C $(LIB_DIR)
 	@echo $(GRAY) $(CURSIVE) "====> All object files removed successfully!" $(RESET)
 
 fclean: clean
 	@rm -rf $(NAME) $(SBONUS) $(CBONUS)
-	@make fclean -C $(LIB_DIR)/libft
-	@make fclean -C $(LIB_DIR)/ft_printf
+	@make fclean -C $(LIB_DIR)
+	@make fclean -C $(LIB_DIR)
 	@echo $(GRAY) $(CURSIVE) "====> All object files, libraries  and executables removed successfully!" $(RESET)
 
 re: fclean all
