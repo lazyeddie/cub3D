@@ -3,3 +3,4 @@ dep
 obj
 *.o
 *test*
+*.a
