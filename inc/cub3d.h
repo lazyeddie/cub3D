@@ -2,8 +2,7 @@
 # define CUB3D_H
 # include <stdlib.h>
 # include <unistd.h>
-# include <X11/keysym.h>
-# include <X11/X.h>
+# include <mlx.h>
 # include "ft_printf.h"
 # include "libft.h"
 
