@@ -17,6 +17,9 @@ INC			=	-I./inc -I./lib/ft_printf -I./lib/libft
 # source files
 SRC			= 	main.c \
 				window.c \
+				parsing.c \
+				data_create.c \
+				data_gnl.c \
 				free_funcs.c
 SRCDIR		=	src/
 
@@ -63,7 +66,7 @@ $(LIB):
 	@make -sC $(LIB_DIR)
 
 $(NAME): $(OBJDIR) $(OBJPATH) $(DEPDIR)
-	@$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJPATH)
+	@$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJPATH) $(LIB)
 	@echo $(BG_GREEN) $(WHITE) $(YYY)"cub3D ready" $(RESET)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c

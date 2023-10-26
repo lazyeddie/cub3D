@@ -3,15 +3,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <mlx.h>
+
 # include "ft_printf.h"
 # include "libft.h"
-
-typedef struct s_game
-{
-	char		**map;
-	void		*mlx_ptr;
-	void		*win_ptr;
-}	t_game;
+# include "structs.h"
+# include "parsing.h"
 
 //window.c
 void	create_window(t_game *game);
