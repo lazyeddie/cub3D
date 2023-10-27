@@ -89,8 +89,7 @@ int	sort_data(t_data *data, char *input)
 	int i;
 
 	i = 0;
-	(void)data;
-	while(input[i] && input[i + 1])
+	while (input[i] && input[i + 1])
 	{
 		while (input[i] && is_space(input[i]))
 			i++;
@@ -98,16 +97,23 @@ int	sort_data(t_data *data, char *input)
 		i = 0;
 		if (input && is_asset(input))
 		{
-			printf("%s\n", input);
 			while (input[i] && ft_strncmp(&input[i], "\n", 1))
 				i++;
 		}
 		else
 		{
-			printf("%s\n", input);
-			return (printf("Not found\n"), 1);
+			save_map(data, input);
+			break ;
 		}
 	}
+	return (0);
+}
+
+int	save_map(t_data *data, char *input)
+{
+	data->map = ft_split(input, '\n');
+	if (!data->map)
+		exit (1);
 	return (0);
 }
 

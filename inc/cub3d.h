@@ -15,40 +15,13 @@
 # include "parsing.h"
 # define PIXEL 64
 
-typedef struct s_data
-{
-	char	*north;
-	char	*south;
-	char	*west;
-	char	*east;
-	int		floor[3];
-	int		ceiling[3];
-}	t_data;
-
-typedef struct s_assets
-{
-	void	*north;
-	void	*south;
-	void	*west;
-	void	*east;
-}	t_assets;
-
-typedef struct s_game
-{
-	int			fd;
-	char		**map;
-	t_data		data;
-	t_assets	assets;
-	void		*mlx_ptr;
-	void		*win_ptr;
-}	t_game;
-
 // main.c
-void    init_struct(t_game *game);
+void	init_struct(t_game *game, t_data *data);
 
 // read_map.c
 void	read_map(t_game *game, char *file);
 void	print_map(t_game *game);
+void	assign_values(t_game *game);
 
 // image.c
 void	generate_tilemap(t_game *game);
