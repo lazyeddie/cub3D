@@ -13,7 +13,7 @@ void	free_game(t_game *game)
 	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 	mlx_destroy_display(game->mlx_ptr);
 	game->mlx_ptr = free_ptr(game->mlx_ptr);
-	game->map = free_array(game->map);
+	game->data->map = free_array(game->data->map);
 }
 
 void	*free_array(char **arr)

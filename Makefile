@@ -17,7 +17,6 @@ INC			=	-I./inc -I./lib/ft_printf -I./lib/libft
 
 # source files
 SRC			= 	main.c \
-				init_struct.c \
 				read_map.c \
 				image.c \
 				window.c \
