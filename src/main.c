@@ -13,10 +13,8 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (argc == 2)
-	{
 		init_struct(&game, &data);
 		parsing(game.data, argv[1]);
 		create_window(&game);
-	}
 	return (0);
 }
