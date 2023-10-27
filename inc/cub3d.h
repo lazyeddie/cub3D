@@ -2,14 +2,58 @@
 # define CUB3D_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <string.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
 # include <mlx.h>
 
 # include "ft_printf.h"
 # include "libft.h"
 # include "structs.h"
 # include "parsing.h"
+# define PIXEL 64
 
-//window.c
+typedef struct s_data
+{
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
+	int		floor[3];
+	int		ceiling[3];
+}	t_data;
+
+typedef struct s_assets
+{
+	void	*north;
+	void	*south;
+	void	*west;
+	void	*east;
+}	t_assets;
+
+typedef struct s_game
+{
+	int			fd;
+	char		**map;
+	t_data		data;
+	t_assets	assets;
+	void		*mlx_ptr;
+	void		*win_ptr;
+}	t_game;
+
+// main.c
+void    init_struct(t_game *game);
+
+// read_map.c
+void	read_map(t_game *game, char *file);
+void	print_map(t_game *game);
+
+// image.c
+void	generate_tilemap(t_game *game);
+
+// window.c
 void	create_window(t_game *game);
 
 // free_funcs.c

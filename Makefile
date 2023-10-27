@@ -5,6 +5,7 @@ NAME		= cub3D
 CC			= cc
 CFLAGS		= -Werror -Wextra -Wall -g
 DEPFLAGS	= -MP -MMD
+MLXFLAGS	= -lX11 -lXext -lmlx
 
 # libft
 LIB_DIR		=	lib/ft_printf/
@@ -16,6 +17,9 @@ INC			=	-I./inc -I./lib/ft_printf -I./lib/libft
 
 # source files
 SRC			= 	main.c \
+				init_struct.c \
+				read_map.c \
+				image.c \
 				window.c \
 				parsing.c \
 				data_create.c \
@@ -66,8 +70,8 @@ $(LIB):
 	@make -sC $(LIB_DIR)
 
 $(NAME): $(OBJDIR) $(OBJPATH) $(DEPDIR)
-	@$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJPATH) $(LIB)
-	@echo $(BG_GREEN) $(WHITE) $(YYY)"cub3D ready" $(RESET)
+	@$(CC) $(CFLAGS) $(MLXFLAGS) $(INC) -o $(NAME) $(OBJPATH) $(LIB)
+	@echo $(BG_GREEN) $(XXX)"cub3D ready" $(RESET)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
 	$(CC) $(CFLAGS) $(DEPFLAGS) $(INC) -c -o $@ $<
