@@ -5,7 +5,7 @@
 
 # include "cub3d.h"
 
-# define BUFFER_SIZE 1
+# define READ_SIZE 10000
 
 /*parsing.c*/
 void	parsing(t_data *data, char *arg);

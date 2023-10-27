@@ -5,14 +5,15 @@
 
 typedef struct s_data
 {
-	char		**input;
+	char		*input;
+	int			*count[6];
 	char		**map;
 	char		*north;
 	char		*south;
 	char		*west;
 	char		*east;
-	int			*floor;
-	int			*ceiling;
+	int			floor[3];
+	int			ceiling[3];
 }	t_data;
 
 typedef struct s_game
