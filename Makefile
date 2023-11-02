@@ -12,8 +12,15 @@ LIB_DIR		=	lib/ft_printf/
 LIB_NAME	=	libftprintf.a
 LIB			=	$(LIB_DIR)$(LIB_NAME)
 
+# minilibx
+MLX_DIR		= minilibx-linux/
+MLX_NAME	= libmlx.a
+MLX			= $(MLX_DIR)$(MLX_NAME)
+
 # include
-INC			=	-I./inc -I./lib/ft_printf -I./lib/libft
+INC			=	-I./inc -I./lib/ft_printf -I./lib/libft -I./minilibx-linux
+
+LINK		=	-L./minilibx-linux
 
 # source files
 SRC			= 	main.c \
@@ -64,12 +71,19 @@ RESET		='\033[0m'
 # rules
 all: $(LIB) $(NAME)
 
+home: $(LIB) $(MLX) $(NAME)
+
 $(LIB):
 	@echo $(GRAY)"Making libftprintf..."$(RESET)
 	@make -sC $(LIB_DIR)
 
+$(MLX):
+	@echo $(GRAY) "Making MiniLibX..." $(RESET)
+	@make -sC $(MLX_DIR)
+	@echo $(YELLOW) "MiniLibX ready" $(RESET)
+
 $(NAME): $(OBJDIR) $(OBJPATH) $(DEPDIR)
-	@$(CC) $(CFLAGS) $(MLXFLAGS) $(INC) -o $(NAME) $(OBJPATH) $(LIB)
+	@$(CC) $(CFLAGS) $(MLXFLAGS) $(INC) $(LINK) -o $(NAME) $(OBJPATH) $(LIB)
 	@echo $(BG_GREEN) $(XXX)"cub3D ready" $(RESET)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
