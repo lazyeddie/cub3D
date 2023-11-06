@@ -1,4 +1,4 @@
-# executables
+# executable
 NAME		= cub3D
 
 # compiler
@@ -100,11 +100,13 @@ clean:
 	@rm -rf $(OBJDIR) $(DEPDIR)
 	@make clean -C $(LIB_DIR)
 	@echo $(GRAY) $(CURSIVE) "====> All object files removed successfully!" $(RESET)
+	@echo $(YELLOW)"clean" $(RESET)
 
 fclean: clean
 	@rm -rf $(NAME)
 	@make fclean -C $(LIB_DIR)
 	@echo $(GRAY) $(CURSIVE) "====> All object files, libraries  and executables removed successfully!" $(RESET)
+	@echo $(BG_YELLOW) $(XXX)"All clean" $(RESET)
 
 re: fclean all
 
