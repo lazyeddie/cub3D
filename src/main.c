@@ -5,6 +5,12 @@ void	init_struct(t_game *game, t_data *data)
 	game->data = data;
 	game->mlx_ptr = NULL;
 	game->win_ptr = NULL;
+	game->assets.north.mlx_img = NULL;
+	game->assets.south.mlx_img = NULL;
+	game->assets.west.mlx_img = NULL;
+	game->assets.east.mlx_img = NULL;
+	game->assets.empty.mlx_img = NULL;
+	game->assets.player.mlx_img = NULL;
 }
 
 int	main(int argc, char **argv)

@@ -2,14 +2,18 @@
 
 void	free_game(t_game *game)
 {
-	if (game->assets.north)
-		mlx_destroy_image(game->mlx_ptr, game->assets.north);
-	if (game->assets.south)
-		mlx_destroy_image(game->mlx_ptr, game->assets.south);
-	// if (game->assets.west)
-	// 	mlx_destroy_image(game->mlx_ptr, game->assets.west);
-	if (game->assets.east)
-		mlx_destroy_image(game->mlx_ptr, game->assets.east);
+	if (game->assets.north.mlx_img)
+		mlx_destroy_image(game->mlx_ptr, game->assets.north.mlx_img);
+	if (game->assets.south.mlx_img)
+		mlx_destroy_image(game->mlx_ptr, game->assets.south.mlx_img);
+	if (game->assets.west.mlx_img)
+		mlx_destroy_image(game->mlx_ptr, game->assets.west.mlx_img);
+	if (game->assets.east.mlx_img)
+		mlx_destroy_image(game->mlx_ptr, game->assets.east.mlx_img);
+	if (game->assets.player.mlx_img)
+		mlx_destroy_image(game->mlx_ptr, game->assets.player.mlx_img);
+	if (game->assets.empty.mlx_img)
+		mlx_destroy_image(game->mlx_ptr, game->assets.empty.mlx_img);
 	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 	mlx_destroy_display(game->mlx_ptr);
 	game->mlx_ptr = free_ptr(game->mlx_ptr);

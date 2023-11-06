@@ -23,10 +23,11 @@ int	handle_keypress(int keysym, t_game *game)
 
 void	create_window(t_game *game)
 {
-	int	win_w;
-	int	win_h;
+	int		win_w;
+	int		win_h;
 
-	win_w = 10 * PIXEL;
+
+	win_w = 16 * PIXEL;
 	win_h = 10 * PIXEL;
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
@@ -38,6 +39,17 @@ void	create_window(t_game *game)
 		free_ptr(game->mlx_ptr);
 		return ;
 	}
+	game->img = mlx_new_image(game->mlx_ptr, win_w, win_h);
+	if (!game->img)
+	{
+		mlx_destroy_display(game->mlx_ptr);
+		free_ptr(game->mlx_ptr);
+		free_ptr(game->win_ptr);
+		return ;
+	}
+	game->addr = mlx_get_data_addr(game->img, &game->bpp, &game->lsize, &game->endian);
+	draw_bg(game);
+	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img, 0, 0);
 	generate_tilemap(game);
 	mlx_loop_hook(game->mlx_ptr, &handle_no_event, game);
 	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, &handle_keypress, game);

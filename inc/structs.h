@@ -12,23 +12,50 @@ typedef struct s_data
 	char		*south;
 	char		*west;
 	char		*east;
+	char		*player;
+	char		*empty;
 	int			floor[3];
 	int			ceiling[3];
 }	t_data;
 
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*img_addr;
+
+}	t_img;
+
 typedef struct s_assets
 {
-	void	*north;
-	void	*south;
-	void	*west;
-	void	*east;
+	t_img	player;
+	t_img	empty;
+	t_img	north;
+	t_img	south;
+	t_img	west;
+	t_img	east;
 }	t_assets;
+
+typedef enum e_moves
+{
+	FRONT,
+	BACK,
+	LEFT,
+	RIGHT,
+	ROT_LEFT,
+	ROT_RIGHT	
+}	t_moves;
 
 typedef struct s_game
 {
 	int			fd;
 	t_data		*data;
+	void		*img;
+	char		*addr;
 	t_assets	assets;
+	t_moves		move;
+	int			bpp;
+	int			lsize;
+	int			endian;
 	void		*mlx_ptr;
 	void		*win_ptr;
 }	t_game;
