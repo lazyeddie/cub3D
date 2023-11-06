@@ -5,7 +5,7 @@ NAME		= cub3D
 CC			= cc
 CFLAGS		= -Werror -Wextra -Wall -g
 DEPFLAGS	= -MP -MMD
-MLXFLAGS	= -lX11 -lXext -lmlx
+MLXFLAGS	= -lmlx -lX11 -lXext
 
 # libft
 LIB_DIR		=	lib/ft_printf/
@@ -18,9 +18,7 @@ MLX_NAME	= libmlx.a
 MLX			= $(MLX_DIR)$(MLX_NAME)
 
 # include
-INC			=	-I./inc -I./lib/ft_printf -I./lib/libft -I./minilibx-linux
-
-LINK		=	-L./minilibx-linux
+INC			=	-I./inc -I./lib/ft_printf -I./lib/libft -L./minilibx-linux -I./minilibx-linux
 
 # source files
 SRC			= 	main.c \
@@ -83,7 +81,7 @@ $(MLX):
 	@echo $(YELLOW) "MiniLibX ready" $(RESET)
 
 $(NAME): $(OBJDIR) $(OBJPATH) $(DEPDIR)
-	@$(CC) $(CFLAGS) $(MLXFLAGS) $(INC) $(LINK) -o $(NAME) $(OBJPATH) $(LIB)
+	@$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJPATH) $(LIB) $(MLXFLAGS)
 	@echo $(BG_GREEN) $(XXX)"cub3D ready" $(RESET)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
