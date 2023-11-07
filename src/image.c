@@ -6,10 +6,10 @@ int	assign_assets(t_game *game)
 	int	w;
 	int	h;
 
-	game->assets.north = mlx_xpm_file_to_image(game->mlx_ptr, game->data->north, &w, &h);
-	game->assets.south = mlx_xpm_file_to_image(game->mlx_ptr, game->data->south, &w, &h);
+	game->assets.north = mlx_xpm_file_to_image(game->mlx_ptr, game->data->coord[0], &w, &h);
+	game->assets.south = mlx_xpm_file_to_image(game->mlx_ptr, game->data->coord[1], &w, &h);
 	// game->assets.west = mlx_xpm_file_to_image(game->mlx_ptr, game->data.west, &w, &h);
-	game->assets.east = mlx_xpm_file_to_image(game->mlx_ptr, game->data->east, &w, &h);
+	game->assets.east = mlx_xpm_file_to_image(game->mlx_ptr, game->data->coord[3], &w, &h);
 	if (!game->assets.north || !game->assets.south || !game->assets.east)
     {
         printf("%s = %p\n", game->data->north, game->assets.north);

@@ -13,6 +13,7 @@ void	parsing(t_data *data, char *arg);
 /*data_create.c*/
 int		data_create(t_data *data, char *file);
 int     save_map(t_data *data, char *input);
+int		save_asset(t_data *data, char *input, int *i);
 
 /*data_gnl.c*/
 char	*get_next_line(int fd);
