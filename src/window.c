@@ -8,41 +8,30 @@ int	handle_no_event(t_game *game)
 
 int	handle_buttonpress(t_game *game)
 {
-	free_game(game);
+	free_game(game, NULL);
 	return (0);
 }
 
 int	handle_keypress(int keysym, t_game *game)
 {
 	if (keysym == XK_Escape)
-		free_game(game);
+		free_game(game, NULL);
 	// else
 	// 	move_player(game, keysym);
 	return (0);
 }
 
-void	create_window(t_game *game)
+char	*create_window(t_game *game)
 {
-	game->win.w = 16 * PIXEL;
-	game->win.h = 10 * PIXEL;
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
-		return ;
+		return (ERR_MALLOC);
 	game->win.ptr = mlx_new_window(game->mlx_ptr, game->win.w, game->win.h, "cub3D");
 	if (!game->win.ptr)
-	{
-		mlx_destroy_display(game->mlx_ptr);
-		free_ptr(game->mlx_ptr);
-		return ;
-	}
+		return (ERR_MALLOC);
 	game->img = mlx_new_image(game->mlx_ptr, game->win.w, game->win.h);
 	if (!game->img)
-	{
-		mlx_destroy_display(game->mlx_ptr);
-		free_ptr(game->mlx_ptr);
-		free_ptr(game->win.ptr);
-		return ;
-	}
+		return (ERR_MALLOC);
 	game->addr = mlx_get_data_addr(game->img, &game->bpp, &game->lsize, &game->endian);
 	draw_bg(game);
 	mlx_put_image_to_window(game->mlx_ptr, game->win.ptr, game->img, 0, 0);
@@ -51,5 +40,5 @@ void	create_window(t_game *game)
 	mlx_hook(game->win.ptr, KeyPress, KeyPressMask, &handle_keypress, game);
 	mlx_hook(game->win.ptr, 17, 0, &handle_buttonpress, game);
 	mlx_loop(game->mlx_ptr);
-	free_game(game);
+	return (NULL);
 }

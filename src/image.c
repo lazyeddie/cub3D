@@ -1,26 +1,4 @@
 #include "cub3d.h"
-#include <errno.h>
-
-// int	assign_assets(t_game *game)
-// {
-// 	int	w;
-// 	int	h;
-
-// 	game->assets.player = mlx_xpm_file_to_image(game->mlx_ptr, game->data->player, &w, &h);
-// 	game->assets.north = mlx_xpm_file_to_image(game->mlx_ptr, game->data->north, &w, &h);
-// 	game->assets.south = mlx_xpm_file_to_image(game->mlx_ptr, game->data->south, &w, &h);
-// 	// game->assets.west = mlx_xpm_file_to_image(game->mlx_ptr, game->data.west, &w, &h);
-// 	game->assets.east = mlx_xpm_file_to_image(game->mlx_ptr, game->data->east, &w, &h);
-// 	if (!game->assets.north || !game->assets.south || !game->assets.east)
-//     {
-//         printf("%s = %p\n", game->data->north, game->assets.north);
-//         printf("%s = %p\n", game->data->south, game->assets.south);
-//         printf("%s = %p\n", game->data->east, game->assets.east);
-//         printf("freeing game\n");
-// 		free_game(game);
-//     }
-// 	return (1);
-// }
 
 void	*assign_asset(t_game *game, void *asset_ptr, char *path)
 {
@@ -29,10 +7,7 @@ void	*assign_asset(t_game *game, void *asset_ptr, char *path)
 
 	asset_ptr = mlx_xpm_file_to_image(game->mlx_ptr, path, &w, &h);
 	if (!asset_ptr)
-	{
-		free_game(game);
-		// exit (1);
-	}
+		free_game(game, ERR_MALLOC);
 	return (asset_ptr);
 }
 
@@ -87,7 +62,6 @@ void	generate_tilemap(t_game *game)
 	int		j;
 	void	*ptr;
 
-	// assign_assets(game);
 	load_map(game);
 	ptr = NULL;
 	i = 0;
@@ -98,10 +72,7 @@ void	generate_tilemap(t_game *game)
 		{
 			ptr = set_tiles(game, ptr, j, i);
 			if (!ptr)
-			{
-				free_game(game);
-				return ;
-			}
+				free_game(game, ERR_MALLOC);
 			mlx_put_image_to_window(game->mlx_ptr, game->win.ptr, ptr, \
 			PIXEL * j, PIXEL * i);
 			j++;
