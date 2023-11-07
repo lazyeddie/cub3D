@@ -109,7 +109,7 @@ int	save_asset(t_data *data, char *input, int *i)
 	if (!data->assarr[asset - 1])
 		exit (1);
 	if (input[j] && ft_strncmp(&input[j], "\n", 1))
-		(*i)++;
+		j++;
 	*i += j;
 	return (0);
 }
