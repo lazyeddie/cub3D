@@ -1,10 +1,5 @@
 #include "cub3d.h"
 
-// ft_error()
-// {
-
-// }
-
 void	free_game(t_game *game)
 {
 	if (game->assets.north.mlx_img)
@@ -19,10 +14,15 @@ void	free_game(t_game *game)
 		mlx_destroy_image(game->mlx_ptr, game->assets.player.mlx_img);
 	if (game->assets.empty.mlx_img)
 		mlx_destroy_image(game->mlx_ptr, game->assets.empty.mlx_img);
-	mlx_destroy_window(game->mlx_ptr, game->win.ptr);
-	mlx_destroy_display(game->mlx_ptr);
-	game->mlx_ptr = free_ptr(game->mlx_ptr);
-	game->data->map = free_array(game->data->map);
+	if (game->win.ptr)
+		mlx_destroy_window(game->mlx_ptr, game->win.ptr);
+	if (game->mlx_ptr)
+	{
+		mlx_destroy_display(game->mlx_ptr);
+		game->mlx_ptr = free_ptr(game->mlx_ptr);
+	}
+	if (game->data->map)
+		game->data->map = free_array(game->data->map);
 }
 
 void	*free_array(char **arr)

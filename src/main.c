@@ -5,6 +5,8 @@ void	init_struct(t_game *game, t_data *data)
 	game->data = data;
 	game->mlx_ptr = NULL;
 	game->win.ptr = NULL;
+	game->win.w = 1920;
+	game->win.h = 1080;
 	game->assets.north.mlx_img = NULL;
 	game->assets.south.mlx_img = NULL;
 	game->assets.west.mlx_img = NULL;
