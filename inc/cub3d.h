@@ -7,7 +7,7 @@
 # include <string.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
-# include <mlx.h>
+# include "mlx.h"
 
 # include "ft_printf.h"
 # include "libft.h"

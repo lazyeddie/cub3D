@@ -1,19 +1,24 @@
-# executables
+# executable
 NAME		= cub3D
 
 # compiler
 CC			= cc
 CFLAGS		= -Werror -Wextra -Wall -g
 DEPFLAGS	= -MP -MMD
-MLXFLAGS	= -lX11 -lXext -lmlx
+MLXFLAGS	= -L./minilibx-linux -lmlx -lX11 -lXext
 
 # libft
 LIB_DIR		=	lib/ft_printf/
 LIB_NAME	=	libftprintf.a
 LIB			=	$(LIB_DIR)$(LIB_NAME)
 
+# minilibx
+MLX_DIR		= minilibx-linux/
+MLX_NAME	= libmlx.a
+MLX			= $(MLX_DIR)$(MLX_NAME)
+
 # include
-INC			=	-I./inc -I./lib/ft_printf -I./lib/libft
+INC			=	-I./inc -I./lib/ft_printf -I./lib/libft -I./minilibx-linux
 
 # source files
 SRC			= 	main.c \
@@ -64,12 +69,19 @@ RESET		='\033[0m'
 # rules
 all: $(LIB) $(NAME)
 
+home: $(LIB) $(MLX) $(NAME)
+
 $(LIB):
 	@echo $(GRAY)"Making libftprintf..."$(RESET)
 	@make -sC $(LIB_DIR)
 
+$(MLX):
+	@echo $(GRAY) "Making MiniLibX..." $(RESET)
+	@make -sC $(MLX_DIR)
+	@echo $(YELLOW) "MiniLibX ready" $(RESET)
+
 $(NAME): $(OBJDIR) $(OBJPATH) $(DEPDIR)
-	@$(CC) $(CFLAGS) $(MLXFLAGS) $(INC) -o $(NAME) $(OBJPATH) $(LIB)
+	@$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJPATH) $(LIB) $(MLXFLAGS)
 	@echo $(BG_GREEN) $(XXX)"cub3D ready" $(RESET)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
@@ -88,11 +100,13 @@ clean:
 	@rm -rf $(OBJDIR) $(DEPDIR)
 	@make clean -C $(LIB_DIR)
 	@echo $(GRAY) $(CURSIVE) "====> All object files removed successfully!" $(RESET)
+	@echo $(YELLOW)"clean" $(RESET)
 
 fclean: clean
 	@rm -rf $(NAME)
 	@make fclean -C $(LIB_DIR)
 	@echo $(GRAY) $(CURSIVE) "====> All object files, libraries  and executables removed successfully!" $(RESET)
+	@echo $(BG_YELLOW) $(XXX)"All clean" $(RESET)
 
 re: fclean all
 
