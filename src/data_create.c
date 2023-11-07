@@ -77,12 +77,8 @@ int	sort_data(t_data *data, char *input)
 			i++;
 		input += i;
 		i = 0;
-		printf("asset: %d\n", is_asset(input));
 		if (input && is_asset(input))
-		{
 			save_asset(data, input, &i);
-			printf("input: %s, i: %d\n", input, i);
-		}
 		else
 		{
 			save_map(data, input);
@@ -109,8 +105,8 @@ int	save_asset(t_data *data, char *input, int *i)
 	input += *i;
 	while (input[j] && !is_space(input[j]))
 		j++;
-	data->coord[asset - 1] = ft_substr(input, 0, j);
-	if (!data->coord[asset - 1])
+	data->assarr[asset - 1] = ft_substr(input, 0, j);
+	if (!data->assarr[asset - 1])
 		exit (1);
 	if (input[j] && ft_strncmp(&input[j], "\n", 1))
 		(*i)++;
@@ -135,7 +131,7 @@ int	data_create(t_data *data, char *file)
 		exit(1);
 	next_line_mini(fd, data);
 	close(fd);
-	// check_data(data, data->tools.map);
+	check_data(data, data->tools.map);
 	sort_data(data, data->input);
 	return (0);
 }
