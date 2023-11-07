@@ -1,6 +1,13 @@
 #include "cub3d.h"
 
-void	free_game(t_game *game)
+int	ft_error(char *msg)
+{
+	while (*msg)
+		write(2, msg++, 1);
+	exit (1);
+}
+
+void	free_game(t_game *game, char *msg)
 {
 	if (game->assets.north.mlx_img)
 		mlx_destroy_image(game->mlx_ptr, game->assets.north.mlx_img);
@@ -23,6 +30,8 @@ void	free_game(t_game *game)
 	}
 	if (game->data->map)
 		game->data->map = free_array(game->data->map);
+	if (msg)
+		ft_error(msg);
 }
 
 void	*free_array(char **arr)

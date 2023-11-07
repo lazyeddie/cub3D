@@ -7,15 +7,20 @@
 # include <string.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
+# include <errno.h>
 # include "mlx.h"
 
 # include "ft_printf.h"
 # include "libft.h"
 # include "structs.h"
 # include "parsing.h"
+
 # define PIXEL 120
 # define BLUE 0x0000FF
 # define GREEN 0x00FF00
+
+// error msg
+# define ERR_MALLOC "memory allocation failed\n"
 
 // main.c
 void	init_struct(t_game *game, t_data *data);
@@ -30,11 +35,11 @@ void	generate_tilemap(t_game *game);
 void	draw_bg(t_game *game);
 
 // window.c
-void	create_window(t_game *game);
+char    *create_window(t_game *game);
 
 // free_funcs.c
 void	*free_ptr(void *ptr);
 void	*free_array(char **arr);
-void	free_game(t_game *game);
+void	free_game(t_game *game, char *msg);
 
 #endif

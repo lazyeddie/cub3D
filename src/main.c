@@ -19,6 +19,7 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 	t_data	data;
+	char	*err;
 
 	if (argc == 2)
 	{
@@ -27,8 +28,8 @@ int	main(int argc, char **argv)
 		assign_values(&game);
 		// read_map(&game, argv[1]);
 		// print_map(&game);
-		create_window(&game);
-		free_game(&game);
+		err = create_window(&game);
+		free_game(&game, err);
 	}
 	return (0);
 }
