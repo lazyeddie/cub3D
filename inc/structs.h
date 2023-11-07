@@ -45,10 +45,17 @@ typedef enum e_moves
 	ROT_RIGHT	
 }	t_moves;
 
+typedef struct s_win
+{
+	int		w;
+	int		h;
+	void	*ptr;
+}	t_win;
 typedef struct s_game
 {
 	int			fd;
 	t_data		*data;
+	t_win		win;
 	void		*img;
 	char		*addr;
 	t_assets	assets;
@@ -57,7 +64,6 @@ typedef struct s_game
 	int			lsize;
 	int			endian;
 	void		*mlx_ptr;
-	void		*win_ptr;
 }	t_game;
 
 #endif

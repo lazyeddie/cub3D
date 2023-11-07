@@ -4,7 +4,7 @@ void	init_struct(t_game *game, t_data *data)
 {
 	game->data = data;
 	game->mlx_ptr = NULL;
-	game->win_ptr = NULL;
+	game->win.ptr = NULL;
 	game->assets.north.mlx_img = NULL;
 	game->assets.south.mlx_img = NULL;
 	game->assets.west.mlx_img = NULL;
@@ -26,6 +26,7 @@ int	main(int argc, char **argv)
 		// read_map(&game, argv[1]);
 		// print_map(&game);
 		create_window(&game);
+		free_game(&game);
 	}
 	return (0);
 }

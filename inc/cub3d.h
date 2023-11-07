@@ -14,7 +14,8 @@
 # include "structs.h"
 # include "parsing.h"
 # define PIXEL 120
-# define COLOR 0x00FF00
+# define BLUE 0x0000FF
+# define GREEN 0x00FF00
 
 // main.c
 void	init_struct(t_game *game, t_data *data);

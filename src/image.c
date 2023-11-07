@@ -28,7 +28,6 @@ void	*assign_asset(t_game *game, void *asset_ptr, char *path)
 	int	h;
 
 	asset_ptr = mlx_xpm_file_to_image(game->mlx_ptr, path, &w, &h);
-	printf("asset_ptr: %p\n", asset_ptr);
 	if (!asset_ptr)
 	{
 		free_game(game);
@@ -63,17 +62,19 @@ void	draw_bg(t_game *game)
 	int		x;
 	int		y;
 	char	*pixel;
-	int		width = 16 * PIXEL;
-	int		height = 10 * PIXEL;
+	int		color;
 
 	y = 0;
-	while (y < height)
+	color = BLUE;
+	while (y < game->win.h)
 	{
 		x = 0;
-		while (x < width)
+		if (y > game->win.h / 2)
+			color = GREEN;
+		while (x < game->win.w)
 		{
-			pixel = game->addr + (y * width + x) * 4;
-			*(int *)pixel = COLOR;
+			pixel = game->addr + (y * game->win.w + x) * 4;
+			*(int *)pixel = color;
 			x++;
 		}
 		y++;
@@ -101,7 +102,7 @@ void	generate_tilemap(t_game *game)
 				free_game(game);
 				return ;
 			}
-			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, ptr, \
+			mlx_put_image_to_window(game->mlx_ptr, game->win.ptr, ptr, \
 			PIXEL * j, PIXEL * i);
 			j++;
 		}
