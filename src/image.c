@@ -1,5 +1,4 @@
 #include "cub3d.h"
-#include <errno.h>
 
 void	*assign_asset(t_game *game, void *asset_ptr, char *path)
 {
