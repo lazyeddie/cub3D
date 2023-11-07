@@ -13,7 +13,9 @@
 # include "libft.h"
 # include "structs.h"
 # include "parsing.h"
-# define PIXEL 64
+# define PIXEL 120
+# define BLUE 0x0000FF
+# define GREEN 0x00FF00
 
 // main.c
 void	init_struct(t_game *game, t_data *data);
@@ -25,6 +27,7 @@ void	assign_values(t_game *game);
 
 // image.c
 void	generate_tilemap(t_game *game);
+void	draw_bg(t_game *game);
 
 // window.c
 void	create_window(t_game *game);

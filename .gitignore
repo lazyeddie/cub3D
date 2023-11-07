@@ -4,3 +4,4 @@ obj
 *.o
 *test*
 *.a
+cub3D
