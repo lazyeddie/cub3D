@@ -5,7 +5,7 @@ NAME		= cub3D
 CC			= cc
 CFLAGS		= -Werror -Wextra -Wall -g
 DEPFLAGS	= -MP -MMD
-MLXFLAGS	= -lmlx -lX11 -lXext
+MLXFLAGS	= -L./minilibx-linux -lmlx -lX11 -lXext
 
 # libft
 LIB_DIR		=	lib/ft_printf/
@@ -18,7 +18,7 @@ MLX_NAME	= libmlx.a
 MLX			= $(MLX_DIR)$(MLX_NAME)
 
 # include
-INC			=	-I./inc -I./lib/ft_printf -I./lib/libft -L./minilibx-linux -I./minilibx-linux
+INC			=	-I./inc -I./lib/ft_printf -I./lib/libft -I./minilibx-linux
 
 # source files
 SRC			= 	main.c \
