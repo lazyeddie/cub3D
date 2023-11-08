@@ -1,4 +1,5 @@
 #include "parsing.h"
+#include <errno.h>
 
 char	*ft_strnjoin(char const *s1, char const *s2, int len)
 {
@@ -16,7 +17,7 @@ char	*ft_strnjoin(char const *s1, char const *s2, int len)
 	return (s3);
 }
 
-void	next_line_mini(int fd, t_data *data)
+int	next_line_mini(int fd, t_data *data)
 {
 	char	*tmp;
 	char	*buf;
@@ -24,7 +25,7 @@ void	next_line_mini(int fd, t_data *data)
 
 	buf = ft_calloc(sizeof(char), READ_SIZE + 1);
 	if (!buf)
-		exit (1);
+		return (1);
 	data->input = ft_strdup("");
 	res = 1;
 	while (res > 0)
@@ -36,11 +37,12 @@ void	next_line_mini(int fd, t_data *data)
 		{
 			free_ptr(tmp);
 			free_ptr(buf);
-			exit(1);
+			return (1);
 		}
 		free_ptr(tmp);
 	}
 	free_ptr(buf);
+	return (0);
 }
 
 int	is_space(int c)
@@ -50,7 +52,6 @@ int	is_space(int c)
 
 int	is_asset(char *input)
 {
-	// printf("%s\n", input);
 	if (!ft_strncmp(input, "NO ", 3))
 		return (1);
 	if (!ft_strncmp(input, "SO ", 3))
@@ -63,25 +64,29 @@ int	is_asset(char *input)
 		return (5);
 	if (!ft_strncmp(input, "C ", 2))
 		return (6);
-	return (0);	
+	return (0);
 }
 
-int	sort_data(t_data *data, char *input)
+int	extract_data(t_data *data, char *input)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (input[i] && input[i + 1])
 	{
-		while (input[i] && is_space(input[i]))
+		while (input[i] && input[i] == 10)
 			i++;
 		input += i;
 		i = 0;
 		if (input && is_asset(input))
-			save_asset(data, input, &i);
+		{
+			if (save_asset(data, input, &i))
+				return (1);
+		}
 		else
 		{
-			save_map(data, input);
+			if (save_map(data, input))
+				return (1);
 			break ;
 		}
 	}
@@ -90,7 +95,7 @@ int	sort_data(t_data *data, char *input)
 
 int	save_asset(t_data *data, char *input, int *i)
 {
-	int asset;
+	int	asset;
 	int	j;
 
 	j = 0;
@@ -107,7 +112,7 @@ int	save_asset(t_data *data, char *input, int *i)
 		j++;
 	data->assarr[asset - 1] = ft_substr(input, 0, j);
 	if (!data->assarr[asset - 1])
-		exit (1);
+		return (1);
 	if (input[j] && ft_strncmp(&input[j], "\n", 1))
 		j++;
 	*i += j;
@@ -118,20 +123,64 @@ int	save_map(t_data *data, char *input)
 {
 	data->map = ft_split(input, '\n');
 	if (!data->map)
-		exit (1);
+		return (1);
 	return (0);
 }
 
-int	data_create(t_data *data, char *file)
+char	*ft_strerror(int ret)
+{
+	static const char	*errs[] = {
+		"General Error.",
+		"Parsing Error: File not valid.",
+		"Parsing Error: Empty file.",
+		"Parsing Error: Duplicate Found.",
+		"Parsing Error: Invalid input in file. (Check for tabs)",
+		"Parsing Error: Map has unvalid characters.",
+		"Invalid Asset: No such file or directory.",
+		"Malloc Error: Unable to allocate memory buffer.",
+		"Parsing Error: Invalid RGB colors."
+	};
+
+	return ((char *)errs[ret]);
+}
+
+int	not_valid_file(char *s1, char *s2, int n)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i])
+		i++;
+	while (n--)
+	{
+		if (s1[--i] != s2[n])
+			return (s1[i] - s2[n]);
+	}
+	return (0);
+}
+
+int	parsing(t_game *game, t_data *data, char *file)
 {
 	int	fd;
+	int	ret;
 
+	if (not_valid_file(file, ".cub", 4))
+		free_game(game, ft_strerror(FILE_ERR));
 	fd = open(file, O_RDONLY);
 	if (fd < 3)
-		exit(1);
-	next_line_mini(fd, data);
+		free_game(game, strerror(errno));
+	ret = next_line_mini(fd, data);
 	close(fd);
-	check_data(data, data->tools.map);
-	sort_data(data, data->input);
+	if (ret)
+		free_game(game, ft_strerror(MALLOC_ERR));
+	ret = check_data(data, data->input);
+	if (ret)
+		free_game(game, ft_strerror(ret));
+	if (extract_data(data, data->input))
+		free_game(game, ft_strerror(MALLOC_ERR));
+	ret = sort_data(data);
+	if (ret)
+		free_game(game, ft_strerror(ret));
+	print_data(data);
 	return (0);
 }

@@ -2,13 +2,13 @@
 
 int	ft_error(char *msg)
 {
-	while (*msg)
-		write(2, msg++, 1);
+	ft_putendl_fd(msg, 2);
 	exit (1);
 }
 
 void	free_game(t_game *game, char *msg)
 {
+	game->data = free_data(game->data);
 	if (game->assets.north.mlx_img)
 		mlx_destroy_image(game->mlx_ptr, game->assets.north.mlx_img);
 	if (game->assets.south.mlx_img)
@@ -28,10 +28,30 @@ void	free_game(t_game *game, char *msg)
 		mlx_destroy_display(game->mlx_ptr);
 		game->mlx_ptr = free_ptr(game->mlx_ptr);
 	}
-	if (game->data->map)
-		game->data->map = free_array(game->data->map);
 	if (msg)
 		ft_error(msg);
+}
+t_data	*free_data(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	if (data->map)
+		data->map = free_array(data->map);
+	if (data->north)
+		data->north = free_ptr(data->north);
+	if (data->south)
+		data->south = free_ptr(data->south);
+	if (data->west)
+		data->west = free_ptr(data->west);
+	if (data->east)
+		data->east = free_ptr(data->east);
+	if (data->input)
+		data->input = free_ptr(data->input);
+	while (i++ < 6)
+		data->assarr[i] = free_ptr(data->assarr[i]);
+	data = NULL;
+	return (NULL);
 }
 
 void	*free_array(char **arr)
