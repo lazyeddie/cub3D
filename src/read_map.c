@@ -44,8 +44,8 @@ void	assign_values(t_game *game)
 	game->data->south = "./assets/SO.xpm";
 	game->data->west = "./assets/WE.xpm";
 	game->data->east = "./assets/EA.xpm";
-	game->data->player = "./assets/Player.xpm";
-	game->data->empty = "./assets/Empty.xpm";
+	// game->data->player = "./assets/Player.xpm";
+	// game->data->empty = "./assets/Empty.xpm";
 	game->data->floor[0] = 220;
 	game->data->floor[1] = 100;
 	game->data->floor[2] = 0;

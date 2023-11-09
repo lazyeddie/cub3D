@@ -22,7 +22,6 @@ void	*set_tiles(t_game *game, void *ptr, int x, int y)
 	else
 		ptr = game->assets.north.mlx_img;
 	return (ptr);
-}
 
 void	load_map(t_game *game)
 {
