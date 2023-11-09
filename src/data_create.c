@@ -181,6 +181,5 @@ int	parsing(t_game *game, t_data *data, char *file)
 	ret = sort_data(data);
 	if (ret)
 		free_game(game, ft_strerror(ret));
-	print_data(data);
 	return (0);
 }

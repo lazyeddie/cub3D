@@ -15,18 +15,21 @@ void	*set_tiles(t_game *game, void *ptr, int x, int y)
 {
 	if (game->data->map[y][x] == '1')
 		ptr = game->assets.north.mlx_img;
-	else if (game->data->map[y][x] == '0')
-		ptr = game->assets.empty.mlx_img;
-	else if (game->data->map[y][x] == 'N')
-		ptr = game->assets.player.mlx_img;
+	// else if (game->data->map[y][x] == '0')
+	// 	ptr = game->assets.empty.mlx_img;
+	// else if (game->data->map[y][x] == 'N')
+	// 	ptr = game->assets.player.mlx_img;
+	else
+		ptr = game->assets.north.mlx_img;
 	return (ptr);
 }
 
 void	load_map(t_game *game)
 {
+	print_data(game->data);
 	game->assets.north.mlx_img = assign_asset(game, &game->assets.north.mlx_img, game->data->north);
-	game->assets.player.mlx_img = assign_asset(game, &game->assets.player.mlx_img, game->data->player);
-	game->assets.empty.mlx_img = assign_asset(game, &game->assets.empty.mlx_img, game->data->empty);
+	// game->assets.player.mlx_img = assign_asset(game, &game->assets.player.mlx_img, game->data->player);
+	// game->assets.empty.mlx_img = assign_asset(game, &game->assets.empty.mlx_img, game->data->empty);
 	// assign_asset(game, &game->assets.west.mlx_img, game->data->west);
 	// assign_asset(game, &game->assets.east.mlx_img, game->data->east);
 	// assign_asset(game, &game->assets.south.mlx_img, game->data->south);
@@ -72,7 +75,7 @@ void	generate_tilemap(t_game *game)
 		{
 			ptr = set_tiles(game, ptr, j, i);
 			if (!ptr)
-				free_game(game, ERR_MALLOC);
+				free_game(game, "test\n");
 			mlx_put_image_to_window(game->mlx_ptr, game->win.ptr, ptr, \
 			PIXEL * j, PIXEL * i);
 			j++;
