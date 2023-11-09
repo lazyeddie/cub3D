@@ -23,6 +23,8 @@ INC			=	-I./inc -I./lib/ft_printf -I./lib/libft -I./minilibx-linux
 # source files
 SRC			= 	main.c \
 				read_map.c \
+				player.c \
+				raycasting.c \
 				image.c \
 				window.c \
 				parsing.c \

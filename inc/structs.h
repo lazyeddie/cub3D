@@ -46,6 +46,35 @@ typedef enum e_moves
 	ROT_RIGHT	
 }	t_moves;
 
+typedef struct s_rays
+{
+	float	pov_x;
+	float	pov_y;
+	float	dir_x;
+	float	dir_y;
+	float	delta_x;
+	float	delta_y;
+	float	grid_x;
+	float	grid_y;
+	float	step_dir_x;
+	float	step_dir_y;
+	float	step_dist_x;
+	float	step_dist_y;
+	float	fov;
+
+}	t_rays;
+
+typedef struct s_player
+{
+	int		pos_x;
+	int		pos_y;
+	char	start_dir;
+	float	dir_x;
+	float	dir_y;
+	float	plane_x;
+	float	plane_y;
+}	t_player;
+
 typedef struct s_win
 {
 	int		w;
@@ -60,6 +89,8 @@ typedef struct s_game
 	void		*img;
 	char		*addr;
 	t_assets	assets;
+	t_player	player;
+	t_rays		*rays;
 	t_moves		move;
 	int			bpp;
 	int			lsize;

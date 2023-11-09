@@ -6,7 +6,7 @@ void	init_struct(t_game *game, t_data *data)
 	game->mlx_ptr = NULL;
 	game->win.ptr = NULL;
 	game->win.w = 1920;
-	game->win.h = 1080;
+	game->win.h = 1020;
 	game->assets.north.mlx_img = NULL;
 	game->assets.south.mlx_img = NULL;
 	game->assets.west.mlx_img = NULL;
@@ -28,6 +28,7 @@ int	main(int argc, char **argv)
 		assign_values(&game);
 		// read_map(&game, argv[1]);
 		// print_map(&game);
+		spawn_player(&game, &game.player);
 		err = create_window(&game);
 		free_game(&game, err);
 	}
