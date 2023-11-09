@@ -35,3 +35,21 @@ void	set_ray_direction(t_game *game, t_rays *rays, t_player player, int i)
 	rays->grid_y = rays->pov_y;
 }
 
+// void	calculate_steps(t_game *game, t_rays *rays)
+// {
+// 	if (rays->dir_x < 0)
+// 	{
+// 		rays->step_dir_x = -1;
+// 		rays->step_dist_x = (rays->pov_x - rays->grid_x) * rays->delta_x;
+// 	}
+// 	else
+// 	{
+// 		rays->step_dir_x = 1;
+// 		rays->step_dist_x = (rays->grid_x + 1.0 - rays->pov_x) * rays->delta_x;
+// 	}
+// 	if (rays->dir_y < 0)
+// 	{
+// 		rays->step_dir_y = -1;
+// 		rays->step_dist_y = (rays->pov_y - rays->grid_y);
+// 	}
+// }
