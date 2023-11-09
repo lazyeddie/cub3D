@@ -22,10 +22,11 @@ void	*set_tiles(t_game *game, void *ptr, int x, int y)
 	else
 		ptr = game->assets.north.mlx_img;
 	return (ptr);
+}
 
 void	load_map(t_game *game)
 {
-	print_data(game->data);
+	// print_data(game->data);
 	game->assets.north.mlx_img = assign_asset(game, &game->assets.north.mlx_img, game->data->north);
 	// game->assets.player.mlx_img = assign_asset(game, &game->assets.player.mlx_img, game->data->player);
 	// game->assets.empty.mlx_img = assign_asset(game, &game->assets.empty.mlx_img, game->data->empty);
