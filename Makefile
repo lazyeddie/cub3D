@@ -33,7 +33,7 @@ SRC			= 	main.c \
 				data_map_check.c \
 				data_sort.c \
 				free_funcs.c \
-				test_funcs.c
+				# test_funcs.c
 SRCDIR		=	src/
 
 # object files
