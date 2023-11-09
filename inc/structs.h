@@ -48,6 +48,7 @@ typedef enum e_moves
 
 typedef struct s_rays
 {
+	float	fov;
 	float	pov_x;
 	float	pov_y;
 	float	dir_x;
@@ -60,8 +61,7 @@ typedef struct s_rays
 	float	step_dir_y;
 	float	step_dist_x;
 	float	step_dist_y;
-	float	fov;
-
+	bool	vertical;
 }	t_rays;
 
 typedef struct s_player

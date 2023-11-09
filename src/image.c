@@ -30,9 +30,9 @@ void	load_map(t_game *game)
 	game->assets.north.mlx_img = assign_asset(game, &game->assets.north.mlx_img, game->data->north);
 	// game->assets.player.mlx_img = assign_asset(game, &game->assets.player.mlx_img, game->data->player);
 	// game->assets.empty.mlx_img = assign_asset(game, &game->assets.empty.mlx_img, game->data->empty);
-	// assign_asset(game, &game->assets.west.mlx_img, game->data->west);
-	// assign_asset(game, &game->assets.east.mlx_img, game->data->east);
-	// assign_asset(game, &game->assets.south.mlx_img, game->data->south);
+	// game->assets.west.mlx_img = assign_asset(game, &game->assets.west.mlx_img, game->data->west);
+	// game->assets.east.mlx_img = assign_asset(game, &game->assets.east.mlx_img, game->data->east);
+	// game->assets.south.mlx_img = assign_asset(game, &game->assets.south.mlx_img, game->data->south);
 }
 
 void	draw_bg(t_game *game)

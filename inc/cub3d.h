@@ -8,6 +8,7 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include <math.h>
+# include <stdbool.h>
 # include "mlx.h"
 
 # include "ft_printf.h"
@@ -39,6 +40,8 @@ void	set_start_dir(t_player *player);
 // raycasting.c
 void	raycasting(t_game *game);
 void	set_ray_direction(t_game *game, t_rays *rays, t_player player, int i);
+void	calculate_steps(t_rays *rays);
+void	find_wall(t_rays *rays, char **map);
 
 // image.c
 void	generate_tilemap(t_game *game);
