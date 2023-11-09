@@ -25,10 +25,13 @@ SRC			= 	main.c \
 				read_map.c \
 				image.c \
 				window.c \
-				parsing.c \
+				data_utils.c \
 				data_create.c \
-				data_gnl.c \
-				free_funcs.c
+				data_check.c \
+				data_map_check.c \
+				data_sort.c \
+				free_funcs.c \
+				test_funcs.c
 SRCDIR		=	src/
 
 # object files

@@ -40,5 +40,6 @@ char    *create_window(t_game *game);
 void	*free_ptr(void *ptr);
 void	*free_array(char **arr);
 void	free_game(t_game *game, char *msg);
+t_data	*free_data(t_data *data);
 
 #endif
