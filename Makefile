@@ -22,7 +22,6 @@ INC			=	-I./inc -I./lib/ft_printf -I./lib/libft -I./minilibx-linux
 
 # source files
 SRC			= 	main.c \
-				read_map.c \
 				player.c \
 				raycasting.c \
 				image.c \
@@ -33,7 +32,7 @@ SRC			= 	main.c \
 				data_map_check.c \
 				data_sort.c \
 				free_funcs.c \
-				# test_funcs.c
+				test_funcs.c
 SRCDIR		=	src/
 
 # object files
