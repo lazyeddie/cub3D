@@ -17,10 +17,16 @@ typedef enum e_ret
 	ASSET_ERR,
 	MALLOC_ERR,
 	RGB_ERR,
+	INVALID_MAP_ERR1,
+	INVALID_MAP_ERR2,
 }	t_ret;
 
 
-/*data_check*/
+/*data_map_check.c*/
+int		lonely_space(char *map);
+int		map_check_quali(char **map);
+
+/*data_check.c*/
 void	skip_word(char *str, int *i, bool word);
 void	skip_a(char *str, int *i, int a);
 int		check_counter(int *count);
