@@ -48,7 +48,7 @@ typedef enum e_moves
 
 typedef struct s_rays
 {
-	float	fov;
+	float	view;
 	float	pov_x;
 	float	pov_y;
 	float	dir_x;
@@ -62,6 +62,9 @@ typedef struct s_rays
 	float	step_dist_x;
 	float	step_dist_y;
 	bool	vertical;
+	float	wall_dist;
+	float	wall_size;
+	float	wall_center;
 }	t_rays;
 
 typedef struct s_player
@@ -89,7 +92,7 @@ typedef struct s_game
 	void		*img;
 	char		*addr;
 	t_assets	assets;
-	t_player	player;
+	t_player	*player;
 	t_rays		*rays;
 	t_moves		move;
 	int			bpp;

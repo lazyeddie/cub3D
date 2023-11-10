@@ -10,19 +10,18 @@ void	raycasting(t_game *game)
 		set_ray_direction(game, game->rays, game->player, i);
 		calculate_steps(game->rays);
 		find_wall(game->rays, game->data->map);
-		// calculate distance
 		// calculate textures
 		mlx_put_image_to_window(game->mlx_ptr, game->win.ptr, game->img, 0, 0);
 	}
 }
 
-void	set_ray_direction(t_game *game, t_rays *rays, t_player player, int i)
+void	set_ray_direction(t_game *game, t_rays *rays, t_player *player, int i)
 {
-	rays->pov_x = player.pos_x + 0.5;
-	rays->pov_y = player.pos_y + 0.5;
-	rays->fov = 2 * i / game->win.w - 1.0;
-	rays->dir_x = player.dir_x + player.plane_x * rays->fov;
-	rays->dir_y = player.dir_y + player.plane_y * rays->fov;
+	rays->pov_x = player->pos_x + 0.5;
+	rays->pov_y = player->pos_y + 0.5;
+	rays->view = 2 * i / game->win.w - 1.0;
+	rays->dir_x = player->dir_x + player->plane_x * rays->view;
+	rays->dir_y = player->dir_y + player->plane_y * rays->view;
 	if (rays->dir_x == 0)
 		rays->delta_x = 10000000;
 	else
@@ -62,12 +61,8 @@ void	calculate_steps(t_rays *rays)
 void	find_wall(t_rays *rays, char **map)
 {
 	bool	wall;
-	int		x;
-	int		y;
 
 	wall = false;
-	x = rays->grid_x;
-	y = rays->grid_y;
 	while (!wall)
 	{
 		if (rays->step_dist_x < rays->step_dist_y)
@@ -82,7 +77,17 @@ void	find_wall(t_rays *rays, char **map)
 			rays->grid_y += rays->step_dir_y;
 			rays->vertical = true;
 		}
-		if (map[y][x] == '1')
+		if (map[(int)rays->grid_y][(int)rays->grid_x] == '1')
 			wall = true;
 	}
+	if (rays->vertical == false)
+		rays->wall_dist = rays->step_dist_x - rays->delta_x;
+	else
+		rays->wall_dist = rays->step_dist_y - rays->delta_y;
 }
+
+// void	morph_textures(t_game *game, t_rays *rays, t_player *player)
+// {
+// 	rays->wall_size = game->win.h / rays->wall_dist;
+// 	rays->wall_center = game->win.h / 2 - rays->wall_size / 2;
+// }
