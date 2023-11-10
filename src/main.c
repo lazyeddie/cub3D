@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	{
 		init_struct(&game, &data);
 		parsing(&game, game.data, argv[1]);
-		print_data(game.data);
+		// print_data(game.data);
 		spawn_player(&game, &game.player);
 		err = create_window(&game);
 		free_game(&game, err);
