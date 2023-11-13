@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	init_struct(t_game *game, t_data *data)
+void	init_struct(t_game *game, t_data *data, t_player *player, t_rays *rays)
 {
 	ft_bzero(game, sizeof(t_game));
 	ft_bzero(data, sizeof(t_data));
@@ -11,18 +11,21 @@ void	init_struct(t_game *game, t_data *data)
 
 int	main(int argc, char **argv)
 {
-	t_game	game;
-	t_data	data;
-	char	*err;
+	t_game		game;
+	t_data		data;
+	t_player	player;
+	t_rays		rays;
+	char		*err;
 
 	if (argc == 2)
 	{
-		init_struct(&game, &data);
+		init_struct(&game, &data, &player, &rays);
 		parsing(&game, game.data, argv[1]);
 		// assign_values(&game);
 		// read_map(&game, argv[1]);
 		// print_map(&game);
-		spawn_player(&game, &game.player);
+		spawn_player(&game, &player);
+		raycasting(&game);
 		err = create_window(&game);
 		free_game(&game, err);
 	}

@@ -1,82 +1,85 @@
 #include "parsing.h"
 
-// void	update_pec(t_map *map, int x, int y)
-// {
-// 	if (map->data[y][x] == 'P')
-// 	{
-// 		map->pos.x = x;
-// 		map->pos.y = y;
-// 		map->check.p += 1;
-// 	}
-// 	else if (map->data[y][x] == 'E')
-// 	{
-// 		map->check.exit.x = x;
-// 		map->check.exit.y = y;
-// 		map->check.e += 1;
-// 	}
-// 	else if (map->data[y][x] == 'C')
-// 		map->check.c += 1;
-// 	if (x == map->size.x - 1 && y == map->size.y - 1)
-// 	{
-// 		if (map->check.p != 1)
-// 			err_msg("There must be exactly one player!", map);
-// 		else if (map->check.e != 1)
-// 			err_msg("There must be exactly one exit!", map);
-// 		else if (map->check.c < 1)
-// 			err_msg("There must be at least one collectible!", map);
-// 	}
-// }
+int ft_arrlen(char **arr)
+{
+	int i;
 
-// void	check_symbols(t_map *map, int x, int y)
-// {
-// 	if (map->data[y][x] != 'P' && \
-// 		map->data[y][x] != 'C' && \
-// 		map->data[y][x] != 'E' && \
-// 		map->data[y][x] != '0' && \
-// 		map->data[y][x] != '1')
-// 		err_msg("Wrong symbols!", map);
-// }
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
+}
 
-// void	check_walls(t_map *map, int x, int y)
-// {
-// 	if (map->data[0][x] != '1' || \
-// 		map->data[map->size.y - 1][x] != '1' || \
-// 		map->data[y][0] != '1' || \
-// 		map->data[y][map->size.x - 1] != '1')
-// 		err_msg("Missing wall!", map);
-// }
+int	is_wall(int c)
+{
+	return (c == '1' || c == ' ');
+}
 
-// void	check_rectangle(t_map *map, int y)
-// {
-// 	if (ft_strlen(map->data[y]) != (size_t)map->size.x)
-// 		err_msg("Map is not rectangular!", map);
-// }
+int	is_abyss(int c)
+{
+	return (!c || c == ' ');
+}
 
-// void	map_check_quali(char **map)
-// {
-// 	int	x;
-// 	int	y;
+int	check_walls(char **map, int x, int y, int ymax)
+{
+	int	xmax;
 
-// 	map->size.x = ft_strlen(map->data[0]);
-// 	map->size.y = ft_arrlen(map->data);
-// 	y = 0;
-// 	while (y < map->size.y)
-// 	{
-// 		check_rectangle(map, y);
-// 		x = 0;
-// 		while (x < map->size.x)
-// 		{
-// 			check_walls(map, x, y);
-// 			check_symbols(map, x, y);
-// 			update_pec(map, x, y);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// 	map->count = map->check.c;
-// 	flood_fill(map, map->pos.x, map->pos.y);
-// 	revert_map(map);
-// 	if (map->flag != 2)
-// 		err_msg("No valid path!", map);
-// 	ft_printf("Valid map!\n");
-// }
+	xmax = ft_strlen(map[y]);
+	if (map[y][x] == '0' && (is_abyss(map[y - 1][x]) || \
+		is_abyss(map[y + 1][x]) || is_abyss(map[y][x + 1]) || \
+		is_abyss(map[y][x - 1])))
+		return (1);
+	if (((y == 0 || y == ymax - 1) && !is_wall(map[y][x])) || \
+		((x == 0 || x == xmax - 1) && !is_wall(map[y][x])) || \
+		(x != 0 && !is_wall(map[y][x]) && map[y][x - 1] == ' ') || \
+		(!is_wall(map[y][x]) && map[y][x + 1] == '\0'))
+		return (1);
+	return (0);
+}
+
+int	lonely_space(char *map)
+{
+	int	i;
+	int	space_count;
+	int	char_count;
+
+	i = 0;
+	space_count = 0;
+	char_count = 0;
+	while (map[i])
+	{
+		if (map[i] == 32 || map[i] == 10)
+			space_count++;
+		else if (map[i] == 48 || map[i] == 49)
+			char_count++;
+		i++;
+	}
+	printf("count_s: %d count_c: %d\n", space_count, char_count);
+	if (space_count > 0 && char_count == 0)
+		return (1);
+	return (0);
+}
+
+int	map_check_quali(char **map)
+{
+	int	x;
+	int	y;
+	int	ymax;
+
+	y = 0;
+	ymax = ft_arrlen(map);
+	while (map[y])
+	{
+		x = 0;
+		if (lonely_space(map[y]))
+			return (INVALID_MAP_ERR1);
+		while (map[y][x])
+		{
+			if (check_walls(map, x, y, ymax))
+				return (INVALID_MAP_ERR2);
+			x++;
+		}
+		y++;
+	}
+	return (0);
+}

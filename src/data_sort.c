@@ -99,6 +99,6 @@ int	sort_data(t_data *data)
 	ret = transfer_assets(data);
 	if (ret)
 		return (ret);
-	// ret = map_check_quali(data->map);
+	ret = map_check_quali(data->map);
 	return (ret);
 }

@@ -2,7 +2,8 @@
 
 int	render(t_game *game)
 {
-	(void)game;
+	draw_bg(game);
+	mlx_put_image_to_window(game->mlx_ptr, game->win.ptr, game->img, 0, 0);
 	return (0);
 }
 

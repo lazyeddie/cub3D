@@ -21,7 +21,7 @@ void	raycasting(t_game *game)
 	}
 }
 
-void	set_ray_direction(t_game *game, t_rays *rays, t_player player, int i)
+void	set_ray_direction(t_game *game, t_rays *rays, t_player *player, int i)
 {
 	rays->pov_x = player.pos_x + 0.5;
 	rays->pov_y = player.pos_y + 0.5;
@@ -99,4 +99,14 @@ void	find_wall(t_rays *rays, char **map)
 			printf("wall\n");
 		}
 	}
+	if (rays->vertical == false)
+		rays->wall_dist = rays->step_dist_x - rays->delta_x;
+	else
+		rays->wall_dist = rays->step_dist_y - rays->delta_y;
 }
+
+// void	morph_textures(t_game *game, t_rays *rays, t_player *player)
+// {
+// 	rays->wall_size = game->win.h / rays->wall_dist;
+// 	rays->wall_center = game->win.h / 2 - rays->wall_size / 2;
+// }
