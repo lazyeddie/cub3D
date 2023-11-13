@@ -35,7 +35,6 @@ void	get_player_pos(t_game *game, char **map, t_player *player)
 		free_game(game, ERR_PLAYER);
 }
 
-// maybe change plane to 0.33 to have smaller field of view ??
 void	set_start_dir(t_player *player)
 {
 	player->dir_x = 0;
@@ -60,6 +59,6 @@ void	set_start_dir(t_player *player)
 	else if (player->start_dir == 'W')
 	{
 		player->dir_x = -1;
-		player->plane_x = -0.66;
+		player->plane_y = -0.66;
 	}
 }

@@ -28,12 +28,10 @@ SRC			= 	main.c \
 				data_map_check.c \
 				data_sort.c \
 				free_funcs.c \
-				player.c \
-				raycasting.c \
-				moves.c \
-				image.c \
 				window.c \
-				# test_funcs.c
+				image.c \
+				player.c \
+				raycasting.c
 SRCDIR		=	src/
 
 # object files

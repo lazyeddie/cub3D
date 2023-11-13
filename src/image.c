@@ -28,9 +28,11 @@ void	load_map(t_game *game)
 {
 	// print_data(game->data);
 	game->assets.north.mlx_img = assign_asset(game, &game->assets.north.mlx_img, game->data->north);
-	game->assets.west.mlx_img = assign_asset(game, &game->assets.west.mlx_img, game->data->west);
-	game->assets.south.mlx_img = assign_asset(game, &game->assets.south.mlx_img, game->data->south);
-	game->assets.east.mlx_img = assign_asset(game, &game->assets.east.mlx_img, game->data->east);
+	// game->assets.player.mlx_img = assign_asset(game, &game->assets.player.mlx_img, game->data->player);
+	// game->assets.empty.mlx_img = assign_asset(game, &game->assets.empty.mlx_img, game->data->empty);
+	// game->assets.west.mlx_img = assign_asset(game, &game->assets.west.mlx_img, game->data->west);
+	// game->assets.east.mlx_img = assign_asset(game, &game->assets.east.mlx_img, game->data->east);
+	// game->assets.south.mlx_img = assign_asset(game, &game->assets.south.mlx_img, game->data->south);
 }
 
 void	*assign_asset(t_game *game, void *asset_ptr, char *path)
@@ -56,8 +58,6 @@ void	*assign_asset(t_game *game, void *asset_ptr, char *path)
 // 		ptr = game->assets.north.mlx_img;
 // 	return (ptr);
 // }
-
-
 
 // void	generate_tilemap(t_game *game)
 // {
