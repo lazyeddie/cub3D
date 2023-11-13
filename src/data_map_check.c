@@ -54,7 +54,7 @@ int	lonely_space(char *map)
 			char_count++;
 		i++;
 	}
-	printf("count_s: %d count_c: %d\n", space_count, char_count);
+	// printf("count_s: %d count_c: %d\n", space_count, char_count);
 	if (space_count > 0 && char_count == 0)
 		return (1);
 	return (0);
