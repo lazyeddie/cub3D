@@ -22,7 +22,6 @@ INC			=	-I./inc -I./lib/ft_printf -I./lib/libft -I./minilibx-linux
 
 # source files
 SRC			= 	main.c \
-				read_map.c \
 				data_utils.c \
 				data_create.c \
 				data_check.c \
