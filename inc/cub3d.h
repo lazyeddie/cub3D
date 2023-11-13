@@ -41,8 +41,9 @@ void	raycasting(t_game *game);
 void	set_ray_direction(t_game *game, t_rays *rays, t_player player, int i);
 
 // image.c
-void	generate_tilemap(t_game *game);
 void	draw_bg(t_game *game);
+void	load_map(t_game *game);
+void	*assign_asset(t_game *game, void *asset_ptr, char *path);
 
 // window.c
 char    *create_window(t_game *game);
