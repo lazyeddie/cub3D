@@ -2,9 +2,8 @@
 
 void	init_struct(t_game *game, t_data *data)
 {
-	ft_bzero(data, sizeof(t_data));
 	ft_bzero(game, sizeof(t_game));
-	ft_bzero(&game->rays, sizeof(t_rays));
+	ft_bzero(data, sizeof(t_data));
 	game->data = data;
 	game->win.w = 1920;
 	game->win.h = 1020;

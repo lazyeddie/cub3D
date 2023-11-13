@@ -2,9 +2,7 @@
 
 int	render(t_game *game)
 {
-	draw_bg(game);
-	raycasting(game);
-	mlx_put_image_to_window(game->mlx_ptr, game->win.ptr, game->img, 0, 0);
+	(void)game;
 	return (0);
 }
 
@@ -35,6 +33,9 @@ char	*create_window(t_game *game)
 	if (!game->img)
 		return (ERR_MALLOC);
 	game->addr = mlx_get_data_addr(game->img, &game->bpp, &game->lsize, &game->endian);
+	draw_bg(game);
+	raycasting(game);
+	mlx_put_image_to_window(game->mlx_ptr, game->win.ptr, game->img, 0, 0);
 	mlx_loop_hook(game->mlx_ptr, &render, game);
 	mlx_hook(game->win.ptr, KeyPress, KeyPressMask, &handle_keypress, game);
 	mlx_hook(game->win.ptr, 17, 0, &handle_buttonpress, game);

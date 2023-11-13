@@ -90,7 +90,7 @@ typedef struct s_game
 	char		*addr;
 	t_assets	assets;
 	t_player	player;
-	t_rays		rays;
+	t_rays		*rays;
 	t_moves		move;
 	int			bpp;
 	int			lsize;

@@ -59,6 +59,6 @@ void	set_start_dir(t_player *player)
 	else if (player->start_dir == 'W')
 	{
 		player->dir_x = -1;
-		player->plane_x = -0.66;
+		player->plane_y = -0.66;
 	}
 }
