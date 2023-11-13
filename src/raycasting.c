@@ -21,7 +21,7 @@ void	raycasting(t_game *game)
 	}
 }
 
-void	set_ray_direction(t_game *game, t_rays *rays, t_player *player, int i)
+void	set_ray_direction(t_game *game, t_rays *rays, t_player player, int i)
 {
 	rays->pov_x = player.pos_x + 0.5;
 	rays->pov_y = player.pos_y + 0.5;
