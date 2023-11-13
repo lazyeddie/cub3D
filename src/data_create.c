@@ -135,10 +135,12 @@ char	*ft_strerror(int ret)
 		"Parsing Error: Empty file.",
 		"Parsing Error: Duplicate Found.",
 		"Parsing Error: Invalid input in file. (Check for tabs)",
-		"Parsing Error: Map has unvalid characters.",
+		"Parsing Error: Map has invalid characters.",
 		"Invalid Asset: No such file or directory.",
 		"Malloc Error: Unable to allocate memory buffer.",
-		"Parsing Error: Invalid RGB colors."
+		"Parsing Error: Invalid RGB colors.",
+		"Map Error: Invalid Map - Lonely Spaces.",
+		"Map Error: Invalid Map - Walls Missing.",
 	};
 
 	return ((char *)errs[ret]);

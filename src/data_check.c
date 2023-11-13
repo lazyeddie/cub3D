@@ -38,8 +38,8 @@ int	check_asset(t_data *data, char *input, int *i)
 {
 	int	asset;
 
-	asset = is_asset(input);
-	if (input && asset)
+	asset = is_asset(input + *i);
+	if (input[*i] && asset)
 	{
 		if (data->count[asset - 1] == 1)
 			return (DUP_ERR);
@@ -54,8 +54,10 @@ int	check_asset(t_data *data, char *input, int *i)
 	return (0);
 }
 
-int	check_map(char c, int *count)
+int	check_map(char c, char c1, int *count)
 {
+	if (c1 && (c == '\n' && c1 == '\n'))
+		return (1);
 	if (c == 32 || c == 10 || c == 48 || c == 49)
 		return (0);
 	else if ((c == 'N' || c == 'S' || c == 'W' || c == 'E') && *count == 0)
@@ -77,18 +79,18 @@ int	check_data(t_data *data, char *input)
 	count = 0;
 	if (input[i] == '\0')
 		return (EMPTY_ERR);
-	while (input[i])
+	while (input[i] && check_counter(data->count))
 	{
 		skip_a(input, &i, '\n');
-		input += i;
-		i = 0;
-		if (check_counter(data->count))
-		{
-			ret = check_asset(data, input, &i);
-			if (ret)
-				return (ret);
-		}
-		else if (check_map(input[i], &count))
+		ret = check_asset(data, input, &i);
+		if (ret)
+			return (ret);
+		i++;
+	}
+	skip_a(input, &i, '\n');
+	while (input[i])
+	{
+		if (check_map(input[i], input[i + 1], &count))
 			return (MAP_CHAR_ERR);
 		i++;
 	}

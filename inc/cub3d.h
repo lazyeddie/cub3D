@@ -47,8 +47,9 @@ void	find_wall(t_rays *rays, char **map);
 void	move_player(t_game *game, int keysym);
 
 // image.c
-void	generate_tilemap(t_game *game);
 void	draw_bg(t_game *game);
+void	load_map(t_game *game);
+void	*assign_asset(t_game *game, void *asset_ptr, char *path);
 
 // window.c
 char	*create_window(t_game *game);
