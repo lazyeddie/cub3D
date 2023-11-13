@@ -1,8 +1,10 @@
 #include "cub3d.h"
 
-int	handle_no_event(t_game *game)
+int	render(t_game *game)
 {
-	(void)game;
+	draw_bg(game);
+	raycasting(game);
+	mlx_put_image_to_window(game->mlx_ptr, game->win.ptr, game->img, 0, 0);
 	return (0);
 }
 
@@ -33,10 +35,7 @@ char	*create_window(t_game *game)
 	if (!game->img)
 		return (ERR_MALLOC);
 	game->addr = mlx_get_data_addr(game->img, &game->bpp, &game->lsize, &game->endian);
-	draw_bg(game);
-	mlx_put_image_to_window(game->mlx_ptr, game->win.ptr, game->img, 0, 0);
-	generate_tilemap(game);
-	mlx_loop_hook(game->mlx_ptr, &handle_no_event, game);
+	mlx_loop_hook(game->mlx_ptr, &render, game);
 	mlx_hook(game->win.ptr, KeyPress, KeyPressMask, &handle_keypress, game);
 	mlx_hook(game->win.ptr, 17, 0, &handle_buttonpress, game);
 	mlx_loop(game->mlx_ptr);

@@ -44,8 +44,10 @@ void	calculate_steps(t_rays *rays);
 void	find_wall(t_rays *rays, char **map);
 
 // image.c
-void	generate_tilemap(t_game *game);
+// void	generate_tilemap(t_game *game);
 void	draw_bg(t_game *game);
+void	load_map(t_game *game);
+void	*assign_asset(t_game *game, void *asset_ptr, char *path);
 
 // window.c
 char    *create_window(t_game *game);

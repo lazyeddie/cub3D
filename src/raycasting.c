@@ -7,12 +7,12 @@ void	raycasting(t_game *game)
 	i = 0;
 	while (i < game->win.w)
 	{
-		set_ray_direction(game, game->rays, game->player, i);
-		calculate_steps(game->rays);
-		find_wall(game->rays, game->data->map);
+		set_ray_direction(game, &game->rays, game->player, i);
+		calculate_steps(&game->rays);
+		find_wall(&game->rays, game->data->map);
 		// calculate distance
 		// calculate textures
-		mlx_put_image_to_window(game->mlx_ptr, game->win.ptr, game->img, 0, 0);
+		// mlx_put_image_to_window(game->mlx_ptr, game->win.ptr, game->img, 0, 0);
 	}
 }
 
