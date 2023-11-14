@@ -3,11 +3,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/stat.h>
+# include <math.h>
 # include <fcntl.h>
 # include <string.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
-# include <math.h>
 # include <stdbool.h>
 # include "mlx.h"
 
@@ -16,7 +16,7 @@
 # include "structs.h"
 # include "parsing.h"
 
-# define PIXEL 120
+# define PIXEL 64
 # define BLUE 0x4f84c9
 # define GREEN 0x1a3d0d
 
@@ -42,6 +42,7 @@ void	raycasting(t_game *game);
 void	set_ray_direction(t_game *game, t_rays *rays, t_player player, int i);
 void	calculate_steps(t_rays *rays);
 void	find_wall(t_rays *rays, char **map);
+void	morph_textures(t_game *game, t_rays *rays, t_player *player);
 
 // moves.c
 void	move_player(t_game *game, int keysym);
@@ -49,7 +50,7 @@ void	move_player(t_game *game, int keysym);
 // image.c
 void	draw_bg(t_game *game);
 void	load_map(t_game *game);
-void	*assign_asset(t_game *game, void *asset_ptr, char *path);
+void	*assign_asset(t_game *game, t_img *asset, char *path);
 
 // window.c
 char	*create_window(t_game *game);

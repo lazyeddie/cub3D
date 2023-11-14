@@ -1,4 +1,5 @@
 #include "cub3d.h"
+#include <math.h>
 
 void	raycasting(t_game *game)
 {
@@ -11,11 +12,9 @@ void	raycasting(t_game *game)
 	while (i < game->win.w)
 	{
 		set_ray_direction(game, &game->rays[i], game->player, i);
-		// printf("i: %d, dir_x: %f\n", i, game->rays[i].dir_x);
 		calculate_steps(&game->rays[i]);
 		find_wall(&game->rays[i], game->data->map);
-		// calculate distance
-		// calculate textures
+		morph_textures(game, &game->rays[i], &game->player);
 		// mlx_put_image_to_window(game->mlx_ptr, game->win.ptr, game->img, 0, 0);
 		i++;
 	}
@@ -27,9 +26,7 @@ void	set_ray_direction(t_game *game, t_rays *rays, t_player player, int i)
 	rays->pov_y = player.pos_y + 0.5;
 	rays->fov = 2.0 * i / game->win.w - 1.0;
 	rays->dir_x = player.dir_x + player.plane_x * rays->fov;
-	// printf("%f + %f * %f\n", player.dir_y, player.plane_y, rays->fov);
 	rays->dir_y = player.dir_y + player.plane_y * rays->fov;
-	// printf("dir_x: %f, dir_y: %f, fov: %f\n", rays->dir_x, rays->dir_y, rays->fov);
 	if (rays->dir_x == 0)
 		rays->delta_x = 10000000;
 	else
@@ -64,40 +61,29 @@ void	calculate_steps(t_rays *rays)
 		rays->step_dir_y = 1.0;
 		rays->step_dist_y = (rays->grid_y + 1.0 - rays->pov_y) * rays->delta_y;
 	}
-	printf("calc_steps - x: %f, y: %f\n", rays->step_dist_x, rays->step_dist_y);
 }
 
 void	find_wall(t_rays *rays, char **map)
 {
-	bool	wall;
-
-	wall = false;
-	printf("find wall - x: %f, y: %f\n", rays->step_dist_x, rays->step_dist_y);
-	while (!wall)
+	rays->wall = false;
+	while (!rays->wall)
 	{
 		if (rays->step_dist_x < rays->step_dist_y)
 		{
 			rays->step_dir_x += rays->delta_x;
 			rays->grid_x += rays->step_dir_x;
-			printf("grid_x: %f\n", rays->grid_x);
 			rays->vertical = false;
-			// printf("horizontal\n");
 		}
 		else
 		{
 			rays->step_dir_y += rays->delta_y;
 			rays->grid_y += rays->step_dir_y;
-			printf("grid_y: %f\n", rays->grid_y);
 			rays->vertical = true;
-			// printf("vertical\n");
 		}
 		if (rays->grid_x < 0 || rays->grid_y < 0 || \
 			rays->grid_x >= 34 || rays->grid_y >= 14 || \
 			map[(int)rays->grid_y][(int)rays->grid_x] == '1')
-		{
-			wall = true;
-			printf("wall\n");
-		}
+			rays->wall = true;
 	}
 	if (rays->vertical == false)
 		rays->wall_dist = rays->step_dist_x - rays->delta_x;
@@ -105,8 +91,19 @@ void	find_wall(t_rays *rays, char **map)
 		rays->wall_dist = rays->step_dist_y - rays->delta_y;
 }
 
-// void	morph_textures(t_game *game, t_rays *rays, t_player *player)
-// {
-// 	rays->wall_size = game->win.h / rays->wall_dist;
-// 	rays->wall_center = game->win.h / 2 - rays->wall_size / 2;
-// }
+void	morph_textures(t_game *game, t_rays *rays, t_player *player)
+{
+	rays->wall_size = game->win.h / rays->wall_dist;
+	rays->wall_top = -rays->wall_size / 2 - game->win.h / 2;
+	if (rays->vertical)
+		rays->wall_slice = player->pos_x + rays->wall_dist * rays->dir_x;
+	else
+		rays->wall_slice = player->pos_y + rays->wall_dist * rays->dir_y;
+	rays->wall_slice -= floor(rays->wall_slice); //normalize to range of 0 to 1
+	rays->tex_size = PIXEL / rays->wall_size;
+	rays->tex_slice = rays->wall_slice * PIXEL;
+	if ((rays->vertical == false && rays->dir_x < 0) || \
+		(rays->vertical == true && rays->dir_y > 0))
+		rays->tex_slice = PIXEL - rays->tex_slice - 1;
+	rays->tex = (rays->wall_top - game->win.h / 2 + rays->wall_size / 2) * rays->tex_size;
+}

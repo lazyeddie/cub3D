@@ -23,13 +23,14 @@ typedef struct s_img
 {
 	void	*mlx_img;
 	char	*img_addr;
+	int		bpp;
+	int		lsize;
+	int		endian;
 
 }	t_img;
 
 typedef struct s_assets
 {
-	t_img	player;
-	t_img	empty;
 	t_img	north;
 	t_img	south;
 	t_img	west;
@@ -62,9 +63,14 @@ typedef struct s_rays
 	float	step_dist_x;
 	float	step_dist_y;
 	bool	vertical;
+	bool	wall;
 	float	wall_dist;
 	float	wall_size;
-	float	wall_center;
+	float	wall_top;
+	float	wall_slice;
+	float	tex;
+	float	tex_size;
+	float	tex_slice; 
 }	t_rays;
 
 typedef struct s_player

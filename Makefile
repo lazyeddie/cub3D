@@ -6,6 +6,7 @@ CC			= cc
 CFLAGS		= -Werror -Wextra -Wall -g
 DEPFLAGS	= -MP -MMD
 MLXFLAGS	= -L./minilibx-linux -lmlx -lX11 -lXext
+LINK		= -lm
 
 # libft
 LIB_DIR		=	lib/ft_printf/
@@ -84,7 +85,7 @@ $(MLX):
 	@echo $(YELLOW) "MiniLibX ready" $(RESET)
 
 $(NAME): $(OBJDIR) $(OBJPATH) $(DEPDIR)
-	@$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJPATH) $(LIB) $(MLXFLAGS)
+	@$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJPATH) $(LIB) $(MLXFLAGS) $(LINK)
 	@echo $(BG_GREEN) $(XXX)"cub3D ready" $(RESET)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
