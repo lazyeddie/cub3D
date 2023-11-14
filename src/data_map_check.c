@@ -1,25 +1,5 @@
 #include "parsing.h"
 
-int ft_arrlen(char **arr)
-{
-	int i;
-
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
-}
-
-int	is_wall(int c)
-{
-	return (c == '1' || c == ' ');
-}
-
-int	is_abyss(int c)
-{
-	return (!c || c == ' ');
-}
-
 int	check_walls(char **map, int x, int y, int ymax)
 {
 	int	xmax;
@@ -54,13 +34,12 @@ int	lonely_space(char *map)
 			char_count++;
 		i++;
 	}
-	// printf("count_s: %d count_c: %d\n", space_count, char_count);
 	if (space_count > 0 && char_count == 0)
 		return (1);
 	return (0);
 }
 
-int	map_check_quali(char **map)
+int	map_check_quali(t_data *data, char **map)
 {
 	int	x;
 	int	y;
@@ -80,6 +59,15 @@ int	map_check_quali(char **map)
 			x++;
 		}
 		y++;
+		map_size(data, x, y);
 	}
 	return (0);
+}
+
+void	map_size(t_data *data, int x, int y)
+{
+	if (x > data->width)
+		data->width = x;
+	if (y > data->height)
+		data->height = y;
 }

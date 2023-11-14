@@ -14,12 +14,6 @@ void	skip_word(char *str, int *i, bool word)
 	}
 }
 
-void	skip_a(char *str, int *i, int a)
-{
-	while (str[*i] && str[*i] == a)
-		(*i)++;
-}
-
 int	check_counter(int *count)
 {
 	int	i;
