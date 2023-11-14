@@ -18,8 +18,8 @@ int	handle_keypress(int keysym, t_game *game)
 {
 	if (keysym == XK_Escape)
 		free_game(game, NULL);
-	// else
-	// 	move_player(game, keysym);
+	else
+		move_player(game, &game->player, keysym);
 	return (0);
 }
 

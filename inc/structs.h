@@ -37,16 +37,6 @@ typedef struct s_assets
 	t_img	east;
 }	t_assets;
 
-typedef enum e_moves
-{
-	FRONT,
-	BACK,
-	LEFT,
-	RIGHT,
-	ROT_LEFT,
-	ROT_RIGHT	
-}	t_moves;
-
 typedef struct s_rays
 {
 	float	fov;
@@ -77,6 +67,8 @@ typedef struct s_player
 {
 	int		pos_x;
 	int		pos_y;
+	int		next_x;
+	int		next_y;
 	char	start_dir;
 	float	dir_x;
 	float	dir_y;
