@@ -3,11 +3,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/stat.h>
+# include <math.h>
 # include <fcntl.h>
 # include <string.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
-# include <math.h>
 # include <stdbool.h>
 # include "mlx.h"
 
@@ -16,9 +16,11 @@
 # include "structs.h"
 # include "parsing.h"
 
-# define PIXEL 120
+# define PIXEL 64
 # define BLUE 0x4f84c9
 # define GREEN 0x1a3d0d
+# define RED 0xFF0000
+# define WHITE 0xFFFFFF
 
 // error msg
 # define ERR_MALLOC "memory allocation failed\n"
@@ -41,15 +43,26 @@ void	set_start_dir(t_player *player);
 void	raycasting(t_game *game);
 void	set_ray_direction(t_game *game, t_rays *rays, t_player player, int i);
 void	calculate_steps(t_rays *rays);
-void	find_wall(t_rays *rays, char **map);
+void	find_wall(t_game *game, t_rays *rays, char **map);
+void	calculate_wall(t_game *game, t_rays *rays, t_player *player);
+
+// draw.c
+void	draw_walls(t_game *game, t_rays *rays, int i);
+void	draw_tex(t_game *game, int x, int y, char tex);
+void	draw_bg(t_game *game);
+void	draw_pixel(t_game *game, int x, int y, int color);
+void	draw_game(t_game *game);
 
 // moves.c
-void	move_player(t_game *game, int keysym);
+void	move_player(t_game *game, t_player *player, int keysym);
+void	move_forward(t_game *game, t_player *player);
+void	move_backward(t_game *game, t_player *player);
+void	move_left(t_game *game, t_player *player);
+void	move_right(t_game *game, t_player *player);
 
 // image.c
-void	draw_bg(t_game *game);
 void	load_map(t_game *game);
-void	*assign_asset(t_game *game, void *asset_ptr, char *path);
+void	*assign_asset(t_game *game, t_img *asset, char *path);
 
 // window.c
 char	*create_window(t_game *game);
@@ -59,5 +72,7 @@ void	*free_ptr(void *ptr);
 void	*free_array(char **arr);
 void	free_game(t_game *game, char *msg);
 t_data	*free_data(t_data *data);
+
+void	print_rays(t_rays rays, int i);
 
 #endif

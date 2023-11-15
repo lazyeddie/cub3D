@@ -72,10 +72,10 @@ int	transfer_assets(t_data *data)
 	{
 		if (data->assarr[i] && i <= 3)
 		{
-			ret = open(data->assarr[i], O_RDONLY);
-			if (ret < 0)
-				return (ASSET_ERR);
-			close(ret);
+			// ret = open(data->assarr[i], O_RDONLY);
+			// if (ret < 0)
+			// 	return (ASSET_ERR);
+			// close(ret);
 			if (transfer_dir(data, data->assarr[i], i))
 				return (MALLOC_ERR);
 		}
