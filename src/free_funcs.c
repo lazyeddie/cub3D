@@ -17,6 +17,8 @@ void	free_game(t_game *game, char *msg)
 		mlx_destroy_image(game->mlx_ptr, game->assets.west.mlx_img);
 	if (game->assets.east.mlx_img)
 		mlx_destroy_image(game->mlx_ptr, game->assets.east.mlx_img);
+	if (game->img)
+		mlx_destroy_image(game->mlx_ptr, game->img);
 	if (game->win.ptr)
 		mlx_destroy_window(game->mlx_ptr, game->win.ptr);
 	if (game->mlx_ptr)

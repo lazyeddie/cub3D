@@ -32,7 +32,9 @@ SRC			= 	main.c \
 				window.c \
 				image.c \
 				player.c \
-				raycasting.c
+				raycasting.c \
+				draw.c \
+				moves.c
 SRCDIR		=	src/
 
 # object files

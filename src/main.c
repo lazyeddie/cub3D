@@ -13,14 +13,13 @@ int	main(int argc, char **argv)
 {
 	t_game		game;
 	t_data		data;
-	t_player	player;
 	char		*err;
 
 	if (argc == 2)
 	{
 		init_struct(&game, &data);
 		parsing(&game, game.data, argv[1]);
-		spawn_player(&game, &player);
+		spawn_player(&game, &game.player);
 		err = create_window(&game);
 		free_game(&game, err);
 	}

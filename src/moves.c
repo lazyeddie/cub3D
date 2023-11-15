@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	move_player(t_game *game, t_player *player int keysym)
+void	move_player(t_game *game, t_player *player, int keysym)
 {
 	if (keysym == XK_w)
 		move_forward(game, player);
@@ -10,10 +10,10 @@ void	move_player(t_game *game, t_player *player int keysym)
 		move_left(game, player);
 	else if (keysym == XK_d)
 		move_right(game, player);
-	else if (keysym == XK_Left)
-		rotate_left(game, player);
-	else if (keysym == XK_Right)
-		rotate_right(game, player);
+	// else if (keysym == XK_Left)
+	// 	rotate_left(game, player);
+	// else if (keysym == XK_Right)
+	// 	rotate_right(game, player);
 }
 
 void	move_forward(t_game *game, t_player *player)
