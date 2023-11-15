@@ -54,7 +54,7 @@ void	*assign_asset(t_game *game, t_img *asset, char *path)
 // 			ptr = set_tiles(game, ptr, j, i);
 // 			if (!ptr)
 // 				free_game(game, "test\n");
-// 			mlx_put_image_to_window(game->mlx_ptr, game->win.ptr, ptr, \
+// 			mlx_put_image_to_window(game->mlx_ptr, game->win.ptr, ptr, 
 // 			PIXEL * j, PIXEL * i);
 // 			j++;
 // 		}

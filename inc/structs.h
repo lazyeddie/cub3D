@@ -8,6 +8,8 @@ typedef struct s_data
 	char		*input;
 	int			count[6];
 	char		**map;
+	int			height;
+	int			width;
 	char		*assarr[6];
 	char		*north;
 	char		*south;
