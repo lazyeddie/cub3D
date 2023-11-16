@@ -17,10 +17,13 @@
 # include "parsing.h"
 
 # define PIXEL 64
-# define BLUE 0x4f84c9
-# define GREEN 0x1a3d0d
-# define RED 0xFF0000
-# define WHITE 0xFFFFFF
+# define FLOOR 0x000000
+# define CEILING 0xFFFFFF
+
+// moves
+# define STEP 0.003
+# define LEFT 1
+# define RIGHT 2
 
 // error msg
 # define ERR_MALLOC "memory allocation failed\n"
@@ -57,8 +60,7 @@ void	draw_game(t_game *game);
 void	move_player(t_game *game, t_player *player, int keysym);
 void	move_forward(t_game *game, t_player *player);
 void	move_backward(t_game *game, t_player *player);
-void	move_left(t_game *game, t_player *player);
-void	move_right(t_game *game, t_player *player);
+void	move_sideways(t_game *game, t_player *player, int mov_dir);
 
 // image.c
 void	load_map(t_game *game);

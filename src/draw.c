@@ -49,12 +49,12 @@ void	draw_bg(t_game *game)
 	int		color;
 
 	y = 0;
-	color = game->data->hex_sky;
+	color = CEILING;
 	while (y < game->win.h)
 	{
 		x = 0;
 		if (y > game->win.h / 2)
-			color = game->data->hex_floor;
+			color = FLOOR;
 		while (x < game->win.w)
 		{
 			draw_pixel(game, x, y, color);
