@@ -1,41 +1,6 @@
 #include "cub3d.h"
 #include <math.h>
 
-void	print_rays(t_rays rays, int i)
-{
-	printf("___rays on pos %d____\n", i);
-	printf("fov: %f\n", rays.fov);
-	printf("wall_dist: %f\n", rays.wall_dist);
-	printf("wall_size: %f\n", rays.wall_size);
-	printf("wall_top: %f\n", rays.wall_top);
-	printf("dir_x: %f\n", rays.dir_x);
-	printf("dir_y: %f\n", rays.dir_y);
-
-	printf("vertical: %d\n", rays.vertical);
-	// printf("wall_size: %f\n", rays.wall_size);
-	// printf("wall_top: %f\n", rays.wall_top);
-	// printf("dir_x: %f\n", rays.dir_x);
-	// printf("dir_y: %f\n", rays.dir_y);
-}
-
-void	draw_cube(t_game *game)
-{
-	int x;
-	int y;
-
-	y = game->win.h / 2;
-	while(y < (game->win.h / 2) + 100)
-	{
-		x = game->win.w / 2;
-		while (x < (game->win.w / 2) + 100)
-		{
-			draw_pixel(game, x, y, RED);
-			x++;
-		}
-		y++;
-	}
-}
-
 void	raycasting(t_game *game)
 {
 	int	i;
@@ -51,7 +16,6 @@ void	raycasting(t_game *game)
 		find_wall(game, &game->rays[i], game->data->map);
 		calculate_wall(game, &game->rays[i], &game->player);
 		draw_walls(game, &game->rays[i], i);
-		// draw_cube(game);
 		i++;
 	}
 }
@@ -81,8 +45,6 @@ void	calculate_steps(t_rays *rays)
 	{
 		rays->step_dir_x = -1;
 		rays->step_dist_x = (rays->pov_x - rays->grid_x) * rays->delta_x;
-		// printf("rays->step_dist_x = (rays->pov_x - rays->grid_x) * rays->delta_x\n");
-		// printf("%f = (%f - %f) * %f\n", rays->step_dist_x, rays->pov_x, rays->grid_x, rays->delta_x);
 	}
 	else
 	{
@@ -98,8 +60,6 @@ void	calculate_steps(t_rays *rays)
 	{
 		rays->step_dir_y = 1;
 		rays->step_dist_y = (rays->grid_y + 1.0 - rays->pov_y) * rays->delta_y;
-		// printf("rays->step_dist_y = (rays->grid_y + 1 - rays->pov_y) * rays->delta_y\n");
-		// printf("%f = (%f - %f) * %f\n", rays->step_dist_y, rays->grid_y, rays->pov_y, rays->delta_y);
 	}
 }
 
@@ -124,26 +84,20 @@ void	find_wall(t_game *game, t_rays *rays, char **map)
 		if (rays->grid_x < 0 || rays->grid_y < 0 || \
 			rays->grid_x >= 34 || rays->grid_y >= 14 || \
 			map[(int)rays->grid_y][(int)rays->grid_x] == '1')
-			{
-				// printf("x: %f, y: %f\n", rays->step_dist_x, rays->step_dist_y);
-				// draw_pixel(game, rays->step_dir_x, rays->step_dir_y, WHITE);
 				rays->wall = true;
-			}
 	}
 	if (rays->vertical == false)
 		rays->wall_dist = rays->step_dist_x - rays->delta_x;
 	else
 		rays->wall_dist = rays->step_dist_y - rays->delta_y;
-	if (rays->wall_dist <= 0)
-		rays->wall_dist = 0.001;
-	// printf("wall_dist: %f = %f - %f\n", rays->wall_dist, rays->step_dist_x, rays->delta_x);
-	// printf("wall_dist: %f = %f - %f\n", rays->wall_dist, rays->step_dist_y, rays->delta_y);
+	// if (rays->wall_dist <= 0)
+	// 	rays->wall_dist = 0.001;
 }
 
 void	calculate_wall(t_game *game, t_rays *rays, t_player *player)
 {
-	rays->wall_size = (int)game->win.h / rays->wall_dist;
-	rays->wall_top = -rays->wall_size / 2 - game->win.h / 2;
+	rays->wall_size = (int)game->win.h / (rays->wall_dist);
+	rays->wall_top = -rays->wall_size / 2.0 + game->win.h / 2.0;
 	if (rays->wall_top < 0)
 		rays->wall_top = 0;
 	if (rays->vertical)

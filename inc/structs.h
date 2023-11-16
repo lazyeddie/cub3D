@@ -64,7 +64,7 @@ typedef struct s_rays
 	float	wall_slice;
 	float	tex;
 	float	tex_size;
-	int		tex_x; 
+	int		tex_x;
 	int		tex_y;
 }	t_rays;
 

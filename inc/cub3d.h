@@ -21,6 +21,7 @@
 # define GREEN 0x1a3d0d
 # define RED 0xFF0000
 # define WHITE 0xFFFFFF
+# define ROTATION_SPEED 0.02
 
 // error msg
 # define ERR_MALLOC "memory allocation failed\n"
@@ -59,6 +60,8 @@ void	move_forward(t_game *game, t_player *player);
 void	move_backward(t_game *game, t_player *player);
 void	move_left(t_game *game, t_player *player);
 void	move_right(t_game *game, t_player *player);
+void	rotate_left(t_player *player);
+void	rotate_right(t_player *player);
 
 // image.c
 void	load_map(t_game *game);
