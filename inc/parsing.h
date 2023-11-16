@@ -47,7 +47,6 @@ int		parsing(t_game *game, t_data *data, char *file);
 int		sort_data(t_data *data);
 int		transfer_dir(t_data *data, char *str, int i);
 int		transfer_col(char *str, int *color, int j);
-int		check_number(char *str);
 int		transfer_assets(t_data *data);
 
 /*data_utils.c*/
@@ -55,6 +54,7 @@ void	skip_a(char *str, int *i, int a);
 int		ft_arrlen(char **arr);
 int		is_wall(int c);
 int		is_abyss(int c);
+int		check_number(char *str);
 
 /*data_utils2.c*/
 int		is_space(int c);

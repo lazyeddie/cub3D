@@ -46,21 +46,18 @@ void	draw_bg(t_game *game)
 {
 	int		x;
 	int		y;
-	// char	*pixel;
 	int		color;
 
 	y = 0;
-	color = BLUE;
+	color = game->data->hex_sky;
 	while (y < game->win.h)
 	{
 		x = 0;
 		if (y > game->win.h / 2)
-			color = GREEN;
+			color = game->data->hex_floor;
 		while (x < game->win.w)
 		{
 			draw_pixel(game, x, y, color);
-			// pixel = game->addr + (y * game->win.w + x) * 4;
-			// *(int *)pixel = color;
 			x++;
 		}
 		y++;
@@ -75,7 +72,6 @@ void	draw_pixel(t_game *game, int x, int y, int color)
 	{
 		pixel = game->addr + (y * game->lsize + x * (game->bpp / 8));
 		*(int *)pixel = color;
-
 	}
 }
 

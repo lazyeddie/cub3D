@@ -18,7 +18,9 @@ typedef struct s_data
 	char		*player;
 	char		*empty;
 	int			floor[3];
+	int			hex_floor;
 	int			ceiling[3];
+	int			hex_sky;
 }	t_data;
 
 typedef struct s_img

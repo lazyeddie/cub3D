@@ -21,20 +21,6 @@ int	transfer_dir(t_data *data, char *str, int i)
 	return (0);
 }
 
-int	check_number(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] && str[i] != ',')
-	{
-		if (!ft_isdigit(str[i]))
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 int	transfer_col(char *str, int *color, int j)
 {
 	int		ret;
@@ -72,10 +58,10 @@ int	transfer_assets(t_data *data)
 	{
 		if (data->assarr[i] && i <= 3)
 		{
-			// ret = open(data->assarr[i], O_RDONLY);
-			// if (ret < 0)
-			// 	return (ASSET_ERR);
-			// close(ret);
+			ret = open(data->assarr[i], O_RDONLY);
+			if (ret < 0)
+				return (ASSET_ERR);
+			close(ret);
 			if (transfer_dir(data, data->assarr[i], i))
 				return (MALLOC_ERR);
 		}
@@ -91,6 +77,21 @@ int	transfer_assets(t_data *data)
 	return (0);
 }
 
+int	rgb_to_hex(int *col)
+{
+	int		i;
+	int		nr;
+
+	i = 0;
+	nr = 0;
+	while (i < 3)
+	{
+		nr = (nr << 8) | (col[i] & 0xFF);
+		i++;
+	}
+	return (nr);
+}
+
 int	sort_data(t_data *data)
 {
 	int	ret;
@@ -99,6 +100,8 @@ int	sort_data(t_data *data)
 	ret = transfer_assets(data);
 	if (ret)
 		return (ret);
+	data->hex_floor = rgb_to_hex(data->floor);
+	data->hex_sky = rgb_to_hex(data->ceiling);
 	ret = map_check_quali(data, data->map);
 	if (ret)
 		return (ret);

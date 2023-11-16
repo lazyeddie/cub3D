@@ -25,3 +25,17 @@ void	skip_a(char *str, int *i, int a)
 	while (str[*i] && str[*i] == a)
 		(*i)++;
 }
+
+int	check_number(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != ',')
+	{
+		if (!ft_isdigit(str[i]))
+			return (1);
+		i++;
+	}
+	return (0);
+}
