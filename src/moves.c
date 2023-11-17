@@ -19,7 +19,7 @@ void	move_player(t_game *game, t_player *player, int keysym)
 	else if (keysym == XK_s)
 		move_backward(game, player);
 	else if (keysym == XK_a)
-		move_left(game, player);
+		move_sideways(game, player, LEFT);
 	else if (keysym == XK_d)
 		move_right(game, player);
 	else if (keysym == XK_Left)
@@ -50,7 +50,7 @@ void	move_backward(t_game *game, t_player *player)
 	}
 }
 
-void	move_left(t_game *game, t_player *player)
+void	move_sideways(t_game *game, t_player *player, int mov_dir)
 {
 	player->next_x = player->pos_x - ft_ceil(player->plane_x);
 	player->next_y = player->pos_y - ft_ceil(player->plane_y);

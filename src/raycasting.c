@@ -22,8 +22,10 @@ void	raycasting(t_game *game)
 
 void	set_ray_direction(t_game *game, t_rays *rays, t_player player, int i)
 {
-	rays->pov_x = player.pos_x + 0.5;
-	rays->pov_y = player.pos_y + 0.5;
+	rays->grid_x = player.pos_x;
+	rays->grid_y = player.pos_y;
+	rays->pov_x = (float)player.pos_x + 0.5;
+	rays->pov_y = (float)player.pos_y + 0.5;
 	rays->fov = 2 * i / (float)game->win.w - 1;
 	rays->dir_x = player.dir_x + player.plane_x * rays->fov;
 	rays->dir_y = player.dir_y + player.plane_y * rays->fov;
@@ -35,8 +37,6 @@ void	set_ray_direction(t_game *game, t_rays *rays, t_player player, int i)
 		rays->delta_y = 10000000;
 	else
 		rays->delta_y = fabs(1.0 / rays->dir_y);
-	rays->grid_x = player.pos_x;
-	rays->grid_y = player.pos_y;
 }
 
 void	calculate_steps(t_rays *rays)
@@ -105,8 +105,8 @@ void	calculate_wall(t_game *game, t_rays *rays, t_player *player)
 	else
 		rays->wall_slice = player->pos_y + rays->wall_dist * rays->dir_y;
 	rays->wall_slice -= floor(rays->wall_slice); //normalize to range of 0 to 1
-	rays->tex_size = 1.0 * (float)PIXEL / (float)rays->wall_size;
-	rays->tex_x = (int)rays->wall_slice * (float)PIXEL;
+	rays->tex_size = (float)PIXEL / (float)rays->wall_size;
+	rays->tex_x = (int)rays->wall_slice * PIXEL;
 	if ((rays->vertical == false && rays->dir_x < 0) || \
 		(rays->vertical == true && rays->dir_y > 0))
 		rays->tex_x = PIXEL - rays->tex_x - 1;
