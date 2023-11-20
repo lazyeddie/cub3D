@@ -70,8 +70,8 @@ typedef struct s_rays
 
 typedef struct s_player
 {
-	int		pos_x;
-	int		pos_y;
+	float	pos_x;
+	float	pos_y;
 	int		next_x;
 	int		next_y;
 	char	start_dir;

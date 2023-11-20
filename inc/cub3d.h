@@ -21,6 +21,7 @@
 # define GREEN 0x1a3d0d
 # define RED 0xFF0000
 # define WHITE 0xFFFFFF
+# define STEP 0.05
 # define ROTATION_SPEED 0.02
 
 // error msg
