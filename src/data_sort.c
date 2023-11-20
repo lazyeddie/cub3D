@@ -35,7 +35,7 @@ int	transfer_col(char *str, int *color, int j)
 			ret = ret * 10 + (*str - '0');
 			str++;
 		}
-		if (ret >= 0 && ret < 255)
+		if (ret >= 0 && ret < 256)
 			color[j] = ret;
 		else
 			return (1);
