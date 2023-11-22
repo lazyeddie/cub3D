@@ -7,21 +7,21 @@ void	draw_walls(t_game *game, t_rays *rays, int i)
 		rays->wall_bottom = game->win.h;
 	while (rays->wall_top <= rays->wall_bottom)
 	{
-		rays->tex_y = (int)rays->tex % 560;
+		rays->tex_y = (int)rays->tex % PIXEL;
 		rays->tex += rays->tex_size;
-		if (rays->vertical == 1 && rays->dir_y <= 0)
-			draw_tex(game, i, rays->wall_top, 'N');
-		else if (rays->vertical == 1 && rays->dir_y > 0)
-			draw_tex(game, i, rays->wall_top, 'S');
-		else if (rays->vertical == 0 && rays->dir_x > 0)
-			draw_tex(game, i, rays->wall_top, 'E');
-		else if (rays->vertical == 0 && rays->dir_x <= 0)
-			draw_tex(game, i, rays->wall_top, 'W');
+		if (rays->vertical == true && rays->dir_y > 0)
+			draw_tex(game, rays, i, rays->wall_top, 'N');
+		else if (rays->vertical == true && rays->dir_y <= 0)
+			draw_tex(game, rays, i, rays->wall_top, 'S');
+		else if (rays->vertical == false && rays->dir_x <= 0)
+			draw_tex(game, rays, i, rays->wall_top, 'E');
+		else if (rays->vertical == false && rays->dir_x > 0)
+			draw_tex(game, rays, i, rays->wall_top, 'W');
 		rays->wall_top++;
 	}
 }
 
-void	draw_tex(t_game *game, int x, int y, char tex)
+void	draw_tex(t_game *game, t_rays *rays, int x, int y, char tex)
 {
 	int		color;
 	t_img	tmp;
@@ -35,8 +35,8 @@ void	draw_tex(t_game *game, int x, int y, char tex)
 		tmp = game->assets.east;
 	else if (tex == 'W')
 		tmp = game->assets.west;
-	color = *(int *)(tmp.addr + (game->rays->tex_y * \
-					tmp.lsize + game->rays->tex_x * (tmp.bpp / 8)));
+	color = *(int *)(tmp.addr + (rays->tex_y * \
+					tmp.lsize + rays->tex_x * (tmp.bpp / 8)));
 	draw_pixel(game, x, y, color);
 }
 

@@ -29,6 +29,7 @@ void	free_game(t_game *game, char *msg)
 	if (msg)
 		ft_error(msg);
 }
+
 t_data	*free_data(t_data *data)
 {
 	int	i;
