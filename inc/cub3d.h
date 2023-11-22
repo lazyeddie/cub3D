@@ -27,6 +27,7 @@
 // error msg
 # define ERR_MALLOC "memory allocation failed\n"
 # define ERR_PLAYER "there must be exactly one player\n"
+# define END "G A M E  E N D E D - B Y E !\n"
 
 // main.c
 void	init_struct(t_game *game, t_data *data);
