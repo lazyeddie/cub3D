@@ -30,7 +30,7 @@
 # define END "G A M E  E N D E D - B Y E !\n"
 
 // main.c
-void	init_struct(t_game *game, t_data *data);
+void	init_struct(t_game *game, t_data *data, t_rays *rays);
 
 // read_map.c
 void	read_map(t_game *game, char *file);
@@ -51,7 +51,7 @@ void	calculate_wall(t_game *game, t_rays *rays, t_player *player);
 
 // draw.c
 void	draw_walls(t_game *game, t_rays *rays, int i);
-void	draw_tex(t_game *game, t_rays *rays, int x, int y, char tex);
+int		draw_tex(t_game *game, t_rays *rays, char tex);
 void	draw_bg(t_game *game);
 void	draw_pixel(t_game *game, int x, int y, int color);
 void	draw_game(t_game *game);
