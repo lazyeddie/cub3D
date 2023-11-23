@@ -8,14 +8,14 @@ int	render(t_game *game)
 
 int	handle_buttonpress(t_game *game)
 {
-	free_game(game, "G A M E  E N D E D - B Y E !");
+	free_game(game, END);
 	return (0);
 }
 
 int	handle_keypress(int keysym, t_game *game)
 {
 	if (keysym == XK_Escape)
-		free_game(game, "G A M E  E N D E D - B Y E !");
+		free_game(game, END);
 	else
 	{
 		move_player(game, &game->player, keysym);
