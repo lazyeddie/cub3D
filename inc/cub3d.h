@@ -16,13 +16,13 @@
 # include "structs.h"
 # include "parsing.h"
 
-# define PIXEL 64
+# define PIXEL 128
 # define BLUE 0x4f84c9
 # define GREEN 0x1a3d0d
 # define RED 0xFF0000
 # define WHITE 0xFFFFFF
 # define STEP 0.05
-# define ROTATION_SPEED 0.02
+# define ROTATION_SPEED 0.05
 
 // error msg
 # define ERR_MALLOC "memory allocation failed\n"
@@ -66,6 +66,7 @@ void	rotate_left(t_player *player);
 void	rotate_right(t_player *player);
 
 // image.c
+int		texture_size_check(t_assets tex);
 void	load_map(t_game *game);
 void	*assign_asset(t_game *game, t_img *asset, char *path);
 

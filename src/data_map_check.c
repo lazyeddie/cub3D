@@ -5,9 +5,9 @@ int	check_walls(char **map, int x, int y, int ymax)
 	int	xmax;
 
 	xmax = ft_strlen(map[y]);
-	if (map[y][x] == '0' && (is_abyss(map[y - 1][x]) || \
-		is_abyss(map[y + 1][x]) || is_abyss(map[y][x + 1]) || \
-		is_abyss(map[y][x - 1])))
+	if (map[y][x] == '0' && (y != 0 && y != ymax - 1) && \
+		(is_abyss(map[y - 1][x]) || is_abyss(map[y + 1][x]) || \
+		is_abyss(map[y][x + 1]) || is_abyss(map[y][x - 1])))
 		return (1);
 	if (((y == 0 || y == ymax - 1) && !is_wall(map[y][x])) || \
 		((x == 0 || x == xmax - 1) && !is_wall(map[y][x])) || \

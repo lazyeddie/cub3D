@@ -7,6 +7,9 @@ void	init_struct(t_game *game, t_data *data)
 	game->data = data;
 	game->win.w = 1920;
 	game->win.h = 1020;
+	game->rays = ft_calloc(game->win.w, sizeof(t_rays));
+	if (!game->rays)
+		free_game(game, ERR_MALLOC);
 }
 
 int	main(int argc, char **argv)
