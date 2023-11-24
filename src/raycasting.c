@@ -5,9 +5,6 @@ void	raycasting(t_game *game)
 	int	i;
 
 	i = 0;
-	game->rays = ft_calloc(game->win.w, sizeof(t_rays));
-	if (!game->rays)
-		free_game(game, ERR_MALLOC);
 	while (i < game->win.w)
 	{
 		set_ray_direction(game, &game->rays[i], game->player, i);
@@ -88,8 +85,6 @@ void	find_wall(t_game *game, t_rays *rays, char **map)
 		rays->wall_dist = rays->step_dist_x - rays->delta_x;
 	else
 		rays->wall_dist = rays->step_dist_y - rays->delta_y;
-	// if (rays->wall_dist <= 0)
-	// 	rays->wall_dist = 0.001;
 }
 
 void	calculate_wall(t_game *game, t_rays *rays, t_player *player)
@@ -104,11 +99,10 @@ void	calculate_wall(t_game *game, t_rays *rays, t_player *player)
 	else
 		rays->wall_slice = rays->pov_y + rays->wall_dist * rays->dir_y;
 	rays->wall_slice -= floor(rays->wall_slice); //normalize to range of 0 to 1
-	// printf("slice: %f\n", rays->wall_slice);
-	rays->tex_size = (float)PIXEL / (float)rays->wall_size;
-	rays->tex_x = (int)(rays->wall_slice * PIXEL);
+	rays->tex_size = (float)game->pixel / (float)rays->wall_size;
+	rays->tex_x = (int)(rays->wall_slice * game->pixel);
 	if ((rays->vertical == false && rays->dir_x < 0) || 
 		(rays->vertical == true && rays->dir_y > 0))
-		rays->tex_x = PIXEL - rays->tex_x - 1;
+		rays->tex_x = game->pixel - rays->tex_x - 1;
 	rays->tex = (rays->wall_top - game->win.h / 2 + rays->wall_size / 2) * rays->tex_size;
 }

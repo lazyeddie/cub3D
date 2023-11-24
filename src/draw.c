@@ -7,7 +7,7 @@ void	draw_walls(t_game *game, t_rays *rays, int i)
 		rays->wall_bottom = game->win.h;
 	while (rays->wall_top <= rays->wall_bottom)
 	{
-		rays->tex_y = (int)rays->tex % PIXEL;
+		rays->tex_y = (int)rays->tex % game->pixel;
 		rays->tex += rays->tex_size;
 		if (rays->vertical == true && rays->dir_y > 0)
 			draw_tex(game, rays, i, rays->wall_top, 'N');

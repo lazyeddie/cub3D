@@ -1,20 +1,28 @@
 #include "cub3d.h"
 
+int	texture_size_check(t_assets tex)
+{
+	return (tex.north.px_w != tex.north.px_h || tex.east.px_w != tex.east.px_h \
+	|| tex.south.px_w != tex.south.px_h || tex.west.px_w != tex.west.px_h || \
+		tex.north.px_w != tex.east.px_w || tex.north.px_w != tex.south.px_h || \
+		tex.north.px_w != tex.west.px_w);
+}
+
+
 void	load_map(t_game *game)
 {
-	// print_data(game->data);
 	game->assets.north.mlx_img = assign_asset(game, &game->assets.north, game->data->north);
 	game->assets.west.mlx_img = assign_asset(game, &game->assets.west, game->data->west);
 	game->assets.east.mlx_img = assign_asset(game, &game->assets.east, game->data->east);
 	game->assets.south.mlx_img = assign_asset(game, &game->assets.south, game->data->south);
+	if (texture_size_check(game->assets))
+		free_game(game, "Textures have wrong size!");
+	game->pixel = game->assets.north.px_w;
 }
 
 void	*assign_asset(t_game *game, t_img *asset, char *path)
 {
-	int	w;
-	int	h;
-
-	asset->mlx_img = mlx_xpm_file_to_image(game->mlx_ptr, path, &w, &h);
+	asset->mlx_img = mlx_xpm_file_to_image(game->mlx_ptr, path, &asset->px_w, &asset->px_h);
 	if (!asset->mlx_img)
 		free_game(game, ERR_MALLOC);
 	asset->addr = mlx_get_data_addr(asset->mlx_img, &asset->bpp, &asset->lsize,

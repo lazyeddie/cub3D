@@ -28,6 +28,8 @@ typedef struct s_img
 	void	*mlx_img;
 	char	*addr;
 	int		bpp;
+	int		px_w;
+	int		px_h;
 	int		lsize;
 	int		endian;
 }	t_img;
@@ -95,6 +97,7 @@ typedef struct s_game
 	t_assets	assets;
 	t_player	player;
 	t_rays		*rays;
+	int			pixel;
 	void		*img;
 	char		*addr;
 	int			bpp;

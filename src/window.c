@@ -41,6 +41,5 @@ char	*create_window(t_game *game)
 	mlx_hook(game->win.ptr, 17, 0, &handle_buttonpress, game);
 	load_map(game);
 	mlx_loop(game->mlx_ptr);
-	// mlx_loop_end(game->mlx_ptr);
 	return (NULL);
 }
