@@ -9,6 +9,7 @@ int	ft_error(char *msg)
 void	free_game(t_game *game, char *msg)
 {
 	game->data = free_data(game->data);
+	game->rays = free_ptr(game->rays);
 	if (game->assets.north.mlx_img)
 		mlx_destroy_image(game->mlx_ptr, game->assets.north.mlx_img);
 	if (game->assets.south.mlx_img)

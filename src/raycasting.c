@@ -99,10 +99,10 @@ void	calculate_wall(t_game *game, t_rays *rays, t_player *player)
 	else
 		rays->wall_slice = rays->pov_y + rays->wall_dist * rays->dir_y;
 	rays->wall_slice -= floor(rays->wall_slice); //normalize to range of 0 to 1
-	rays->tex_size = (float)PIXEL / (float)rays->wall_size;
-	rays->tex_x = (int)(rays->wall_slice * PIXEL);
+	rays->tex_size = (float)game->pixel / (float)rays->wall_size;
+	rays->tex_x = (int)(rays->wall_slice * game->pixel);
 	if ((rays->vertical == false && rays->dir_x < 0) || 
 		(rays->vertical == true && rays->dir_y > 0))
-		rays->tex_x = PIXEL - rays->tex_x - 1;
+		rays->tex_x = game->pixel - rays->tex_x - 1;
 	rays->tex = (rays->wall_top - game->win.h / 2 + rays->wall_size / 2) * rays->tex_size;
 }
