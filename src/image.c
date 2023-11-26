@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   image.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/26 18:27:09 by aapostol          #+#    #+#             */
+/*   Updated: 2023/11/26 18:28:10 by aapostol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	texture_size_check(t_assets tex)
@@ -8,13 +20,16 @@ int	texture_size_check(t_assets tex)
 		tex.north.px_w != tex.west.px_w);
 }
 
-
 void	load_map(t_game *game)
 {
-	game->assets.north.mlx_img = assign_asset(game, &game->assets.north, game->data->north);
-	game->assets.west.mlx_img = assign_asset(game, &game->assets.west, game->data->west);
-	game->assets.east.mlx_img = assign_asset(game, &game->assets.east, game->data->east);
-	game->assets.south.mlx_img = assign_asset(game, &game->assets.south, game->data->south);
+	game->assets.north.mlx_img = assign_asset(game, \
+								&game->assets.north, game->data->north);
+	game->assets.west.mlx_img = assign_asset(game, \
+								&game->assets.west, game->data->west);
+	game->assets.east.mlx_img = assign_asset(game, \
+								&game->assets.east, game->data->east);
+	game->assets.south.mlx_img = assign_asset(game, \
+								&game->assets.south, game->data->south);
 	if (texture_size_check(game->assets))
 		free_game(game, "Textures have wrong size!");
 	game->pixel = game->assets.north.px_w;
@@ -22,7 +37,8 @@ void	load_map(t_game *game)
 
 void	*assign_asset(t_game *game, t_img *asset, char *path)
 {
-	asset->mlx_img = mlx_xpm_file_to_image(game->mlx_ptr, path, &asset->px_w, &asset->px_h);
+	asset->mlx_img = mlx_xpm_file_to_image(game->mlx_ptr, path, \
+					&asset->px_w, &asset->px_h);
 	if (!asset->mlx_img)
 		free_game(game, ERR_MALLOC);
 	asset->addr = mlx_get_data_addr(asset->mlx_img, &asset->bpp, &asset->lsize,

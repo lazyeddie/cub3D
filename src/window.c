@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   window.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/26 18:32:10 by aapostol          #+#    #+#             */
+/*   Updated: 2023/11/26 18:32:29 by aapostol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	render(t_game *game)
@@ -29,13 +41,15 @@ char	*create_window(t_game *game)
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
 		return (ERR_MALLOC);
-	game->win.ptr = mlx_new_window(game->mlx_ptr, game->win.w, game->win.h, "cub3D");
+	game->win.ptr = mlx_new_window(game->mlx_ptr, \
+					game->win.w, game->win.h, "cub3D");
 	if (!game->win.ptr)
 		return (ERR_MALLOC);
 	game->img = mlx_new_image(game->mlx_ptr, game->win.w, game->win.h);
 	if (!game->img)
 		return (ERR_MALLOC);
-	game->addr = mlx_get_data_addr(game->img, &game->bpp, &game->lsize, &game->endian);
+	game->addr = mlx_get_data_addr(game->img, &game->bpp, \
+				&game->lsize, &game->endian);
 	mlx_loop_hook(game->mlx_ptr, &render, game);
 	mlx_hook(game->win.ptr, KeyPress, KeyPressMask, &handle_keypress, game);
 	mlx_hook(game->win.ptr, 17, 0, &handle_buttonpress, game);

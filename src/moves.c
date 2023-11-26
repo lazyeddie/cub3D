@@ -1,16 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moves.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/26 18:28:29 by aapostol          #+#    #+#             */
+/*   Updated: 2023/11/26 18:33:54 by aapostol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
-
-// int	ft_ceil(float num)
-// {
-// 	int	i;
-
-// 	i = (int)num;
-// 	if (num > 0 && num > i)
-// 		return (i + 1);
-// 	if (num < 0 && num < i)
-// 		return (i - 1);
-// 	return (i);
-// }
 
 void	move_player(t_game *game, t_player *player, int keysym)
 {
@@ -25,7 +25,7 @@ void	move_player(t_game *game, t_player *player, int keysym)
 	else if (keysym == XK_Left)
 		rotate_left(player);
 	else if (keysym == XK_Right)
-	 	rotate_right(player);
+		rotate_right(player);
 }
 
 void	move_forward(t_game *game, t_player *player)
@@ -92,30 +92,4 @@ void	move_right(t_game *game, t_player *player)
 		player->pos_x += move_x;
 		player->pos_y += move_y;
 	}
-}
-
-void	rotate_left(t_player *player)
-{
-	float	old_dir_x;
-	float	old_plane_x;
-
-	old_dir_x = player->dir_x;
-	old_plane_x = player->plane_x;
-	player->dir_x = player->dir_x * cos(-ROTATION_SPEED) - player->dir_y * sin(-ROTATION_SPEED);
-	player->dir_y = old_dir_x * sin(-ROTATION_SPEED) + player->dir_y * cos(-ROTATION_SPEED);
-	player->plane_x = player->plane_x * cos(-ROTATION_SPEED) - player->plane_y * sin(-ROTATION_SPEED);
-	player->plane_y = old_plane_x * sin(-ROTATION_SPEED) + player->plane_y * cos(-ROTATION_SPEED);
-}
-
-void	rotate_right(t_player *player)
-{
-	float	old_dir_x;
-	float	old_plane_x;
-
-	old_dir_x = player->dir_x;
-	old_plane_x = player->plane_x;
-	player->dir_x = player->dir_x * cos(ROTATION_SPEED) - player->dir_y * sin(ROTATION_SPEED);
-	player->dir_y = old_dir_x * sin(ROTATION_SPEED) + player->dir_y * cos(ROTATION_SPEED);
-	player->plane_x = player->plane_x * cos(ROTATION_SPEED) - player->plane_y * sin(ROTATION_SPEED);
-	player->plane_y = old_plane_x * sin(ROTATION_SPEED) + player->plane_y * cos(ROTATION_SPEED);
 }
