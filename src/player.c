@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpinchas <rpinchas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:30:27 by aapostol          #+#    #+#             */
-/*   Updated: 2023/11/26 18:30:28 by aapostol         ###   ########.fr       */
+/*   Updated: 2023/11/29 20:17:47 by rpinchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	get_player_pos(t_game *game, char **map, t_player *player)
 	int	count;
 
 	count = 0;
-	i = 0;
-	while (map[i])
+	i = -1;
+	while (map[++i])
 	{
 		j = 0;
 		while (map[i][j])
@@ -42,7 +42,6 @@ void	get_player_pos(t_game *game, char **map, t_player *player)
 			}
 			j++;
 		}
-		i++;
 	}
 	if (count != 1)
 		free_game(game, ERR_PLAYER);

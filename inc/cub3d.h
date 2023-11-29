@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpinchas <rpinchas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:36:45 by aapostol          #+#    #+#             */
-/*   Updated: 2023/11/26 18:37:35 by aapostol         ###   ########.fr       */
+/*   Updated: 2023/11/29 20:16:54 by rpinchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,5 @@ void	draw_tile(t_game *game, t_bonus *mini, int color);
 //minimap_utils.c
 void	draw_dir(t_game *game, int x0, int y0, int dir);
 void	draw_tile(t_game *game, t_bonus *mini, int color);
-
-
-// void	print_rays(t_rays rays, int i);
 
 #endif
