@@ -32,8 +32,9 @@
 # define BLUE 0x4f84c9
 # define GREEN 0x1a3d0d
 # define RED 0xFF0000
+# define GREY 0xA1A1A1
 # define WHITE 0xFFFFFF
-# define STEP 0.05
+# define STEP 0.1
 # define ROTATION_SPEED 0.05
 
 // error msg
@@ -93,6 +94,16 @@ void	*free_array(char **arr);
 void	free_game(t_game *game, char *msg);
 t_data	*free_data(t_data *data);
 
-void	print_rays(t_rays rays, int i);
+/*___bonus___*/
+// minimap.c
+void	minimap(t_game	*game);
+void	draw_tile(t_game *game, t_bonus *mini, int color);
+
+//minimap_utils.c
+void	draw_dir(t_game *game, int x0, int y0, int dir);
+void	draw_tile(t_game *game, t_bonus *mini, int color);
+
+
+// void	print_rays(t_rays rays, int i);
 
 #endif

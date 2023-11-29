@@ -36,6 +36,8 @@ SRC			= 	main.c \
 				raycasting.c \
 				draw.c \
 				moves.c \
+				minimap.c \
+				minimap_utils.c \
 				rotation.c
 SRCDIR		=	src/
 
