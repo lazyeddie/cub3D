@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/26 18:36:45 by aapostol          #+#    #+#             */
+/*   Updated: 2023/11/26 18:37:35 by aapostol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 # include <stdlib.h>
@@ -51,7 +63,7 @@ void	calculate_wall(t_game *game, t_rays *rays, t_player *player);
 
 // draw.c
 void	draw_walls(t_game *game, t_rays *rays, int i);
-void	draw_tex(t_game *game, t_rays *rays, int x, int y, char tex);
+int		draw_tex(t_game *game, t_rays *rays, char tex);
 void	draw_bg(t_game *game);
 void	draw_pixel(t_game *game, int x, int y, int color);
 void	draw_game(t_game *game);
@@ -62,6 +74,8 @@ void	move_forward(t_game *game, t_player *player);
 void	move_backward(t_game *game, t_player *player);
 void	move_left(t_game *game, t_player *player);
 void	move_right(t_game *game, t_player *player);
+
+// rotation.c
 void	rotate_left(t_player *player);
 void	rotate_right(t_player *player);
 

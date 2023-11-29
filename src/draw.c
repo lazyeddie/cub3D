@@ -1,30 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/26 18:26:31 by aapostol          #+#    #+#             */
+/*   Updated: 2023/11/26 18:26:42 by aapostol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	draw_walls(t_game *game, t_rays *rays, int i)
 {
+	int	color;
+
+	color = 0;
 	rays->wall_bottom = rays->wall_size / 2 + game->win.h / 2;
 	if (rays->wall_bottom > game->win.h)
 		rays->wall_bottom = game->win.h;
 	while (rays->wall_top <= rays->wall_bottom)
 	{
-		rays->tex_y = (int)rays->tex % game->pixel;
+		rays->tex_y = (int)rays->tex % PIXEL;
 		rays->tex += rays->tex_size;
 		if (rays->vertical == true && rays->dir_y > 0)
-			draw_tex(game, rays, i, rays->wall_top, 'N');
+			color = draw_tex(game, rays, 'N');
 		else if (rays->vertical == true && rays->dir_y <= 0)
-			draw_tex(game, rays, i, rays->wall_top, 'S');
+			color = draw_tex(game, rays, 'S');
 		else if (rays->vertical == false && rays->dir_x <= 0)
-			draw_tex(game, rays, i, rays->wall_top, 'E');
+			color = draw_tex(game, rays, 'E');
 		else if (rays->vertical == false && rays->dir_x > 0)
-			draw_tex(game, rays, i, rays->wall_top, 'W');
+			color = draw_tex(game, rays, 'W');
+		draw_pixel(game, i, rays->wall_top, color);
 		rays->wall_top++;
 	}
 }
 
-void	draw_tex(t_game *game, t_rays *rays, int x, int y, char tex)
+int	draw_tex(t_game *game, t_rays *rays, char tex)
 {
-	int		color;
 	t_img	tmp;
+	int		color;
 
 	color = 0;
 	if (tex == 'N')
@@ -37,7 +53,7 @@ void	draw_tex(t_game *game, t_rays *rays, int x, int y, char tex)
 		tmp = game->assets.west;
 	color = *(int *)(tmp.addr + (rays->tex_y * \
 					tmp.lsize + rays->tex_x * (tmp.bpp / 8)));
-	draw_pixel(game, x, y, color);
+	return (color);
 }
 
 void	draw_bg(t_game *game)

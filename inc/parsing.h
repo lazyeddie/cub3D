@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/26 18:36:52 by aapostol          #+#    #+#             */
+/*   Updated: 2023/11/26 18:37:17 by aapostol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PARSING_H
 # define PARSING_H
 # include <sys/stat.h>
@@ -21,7 +33,6 @@ typedef enum e_ret
 	INVALID_MAP_ERR1,
 	INVALID_MAP_ERR2,
 }	t_ret;
-
 
 /*data_map_check.c*/
 int		lonely_space(char *map);

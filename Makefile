@@ -35,7 +35,8 @@ SRC			= 	main.c \
 				player.c \
 				raycasting.c \
 				draw.c \
-				moves.c
+				moves.c \
+				rotation.c
 SRCDIR		=	src/
 
 # object files
