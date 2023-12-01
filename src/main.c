@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpinchas <rpinchas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:21:26 by aapostol          #+#    #+#             */
-/*   Updated: 2023/11/26 18:21:27 by aapostol         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:41:24 by rpinchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
+//hello
 void	init_struct(t_game *game, t_data *data)
 {
 	ft_bzero(game, sizeof(t_game));
