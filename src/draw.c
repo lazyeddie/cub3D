@@ -95,5 +95,6 @@ void	draw_game(t_game *game)
 	game->img = mlx_new_image(game->mlx_ptr, game->win.w, game->win.h);
 	draw_bg(game);
 	raycasting(game);
+	minimap(game);
 	mlx_put_image_to_window(game->mlx_ptr, game->win.ptr, game->img, 0, 0);
 }

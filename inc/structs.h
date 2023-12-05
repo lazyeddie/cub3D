@@ -82,6 +82,20 @@ typedef struct s_rays
 	int		tex_y;
 }	t_rays;
 
+typedef struct s_bonus
+{
+	int		x;
+	int		y;
+	int		x0;
+	int		y0;
+	int		px;
+	int		py;
+	int		xmax;
+	int		ymax;
+	int		xmin;
+	int		ymin;
+}	t_bonus;
+
 typedef struct s_player
 {
 	float	pos_x;
@@ -108,6 +122,7 @@ typedef struct s_game
 	t_win		win;
 	t_assets	assets;
 	t_player	player;
+	t_bonus		minimap;
 	t_rays		*rays;
 	int			pixel;
 	void		*img;
