@@ -1,7 +1,9 @@
 dep
 *.d
 obj
+bobj
 *.o
 *test*
 *.a
 cub3D
+cub3D_bonus
