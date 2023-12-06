@@ -6,7 +6,7 @@
 /*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:21:26 by aapostol          #+#    #+#             */
-/*   Updated: 2023/11/26 18:21:27 by aapostol         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:28:29 by aapostol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_struct(t_game *game, t_data *data)
 	game->win.h = 1020;
 	game->rays = ft_calloc(game->win.w, sizeof(t_rays));
 	if (!game->rays)
-		free_game(game, ERR_MALLOC);
+		free_game(game, ft_strerror(MALLOC_ERR));
 }
 
 int	main(int argc, char **argv)
@@ -38,5 +38,7 @@ int	main(int argc, char **argv)
 		err = create_window(&game);
 		free_game(&game, err);
 	}
+	else
+		ft_error(ft_strerror(ARGS_ERR));
 	return (0);
 }

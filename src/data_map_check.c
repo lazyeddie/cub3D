@@ -3,21 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   data_map_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpinchas <rpinchas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:24:12 by aapostol          #+#    #+#             */
-/*   Updated: 2023/12/06 11:55:41 by rpinchas         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:10:37 by aapostol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+int	valid_field(int c)
+{
+	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
 
 int	check_walls(char **map, int x, int y, int ymax)
 {
 	int	xmax;
 
 	xmax = ft_strlen(map[y]);
-	if (map[y][x] == '0' && (y != 0 && y != ymax - 1) && \
+	if (valid_field(map[y][x]) && (y != 0 && y != ymax - 1) && \
 		(is_abyss(map[y - 1][x]) || is_abyss(map[y + 1][x]) || \
 		is_abyss(map[y][x + 1]) || is_abyss(map[y][x - 1])))
 		return (1);

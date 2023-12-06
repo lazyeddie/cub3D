@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpinchas <rpinchas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:36:45 by aapostol          #+#    #+#             */
-/*   Updated: 2023/11/29 20:16:54 by rpinchas         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:48:59 by aapostol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@
 # define STEP 0.1
 # define ROTATION_SPEED 0.05
 
-// error msg
-# define ERR_MALLOC "memory allocation failed\n"
-# define ERR_PLAYER "there must be exactly one player\n"
+// bye bye
 # define END "G A M E  E N D E D - B Y E !\n"
 
 // main.c
@@ -93,6 +91,7 @@ void	*free_ptr(void *ptr);
 void	*free_array(char **arr);
 void	free_game(t_game *game, char *msg);
 t_data	*free_data(t_data *data);
+int		ft_error(char *msg);
 
 /*___bonus___*/
 // minimap.c

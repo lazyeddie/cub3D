@@ -72,8 +72,8 @@ BOBJPATH		= $(addprefix $(BOBJDIR), $(BOBJ))
 
 # dependency files
 DEP			= $(patsubst %.c, %.d, $(SRC))
-DEPDIR		= dep/
-DEPPATH 	= $(addprefix $(DEPDIR), $(DEP))
+# DEPDIR		= dep/
+# DEPPATH 	= $(addprefix $(DEPDIR), $(DEP))
 
 # colors
 RED 		='\033[31m'
