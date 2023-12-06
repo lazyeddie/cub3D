@@ -6,7 +6,7 @@
 /*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:27:09 by aapostol          #+#    #+#             */
-/*   Updated: 2023/11/26 18:28:10 by aapostol         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:28:29 by aapostol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	*assign_asset(t_game *game, t_img *asset, char *path)
 	asset->mlx_img = mlx_xpm_file_to_image(game->mlx_ptr, path, \
 					&asset->px_w, &asset->px_h);
 	if (!asset->mlx_img)
-		free_game(game, ERR_MALLOC);
+		free_game(game, ft_strerror(MALLOC_ERR));
 	asset->addr = mlx_get_data_addr(asset->mlx_img, &asset->bpp, &asset->lsize,
 			&asset->endian);
 	if (!asset->addr)
-		free_game(game, ERR_MALLOC);
+		free_game(game, ft_strerror(MALLOC_ERR));
 	return (asset->mlx_img);
 }
 

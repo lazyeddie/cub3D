@@ -6,7 +6,7 @@
 /*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:32:10 by aapostol          #+#    #+#             */
-/*   Updated: 2023/11/26 18:32:29 by aapostol         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:28:29 by aapostol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ char	*create_window(t_game *game)
 {
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
-		return (ERR_MALLOC);
+		return (ft_strerror(MALLOC_ERR));
 	game->win.ptr = mlx_new_window(game->mlx_ptr, \
 					game->win.w, game->win.h, "cub3D");
 	if (!game->win.ptr)
-		return (ERR_MALLOC);
+		return (ft_strerror(MALLOC_ERR));
 	game->img = mlx_new_image(game->mlx_ptr, game->win.w, game->win.h);
 	if (!game->img)
-		return (ERR_MALLOC);
+		return (ft_strerror(MALLOC_ERR));
 	game->addr = mlx_get_data_addr(game->img, &game->bpp, \
 				&game->lsize, &game->endian);
 	mlx_loop_hook(game->mlx_ptr, &render, game);

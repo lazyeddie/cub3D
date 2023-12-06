@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_create.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpinchas <rpinchas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:24:01 by aapostol          #+#    #+#             */
-/*   Updated: 2023/12/06 11:58:30 by rpinchas         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:57:43 by aapostol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,18 +96,19 @@ int	save_asset(t_data *data, char *input, int *i)
 char	*ft_strerror(int ret)
 {
 	static const char	*errs[] = {
-		"General Error.",
-		"Parsing Error: File not valid.",
-		"Parsing Error: Empty file.",
-		"Parsing Error: Duplicate Found.",
-		"Parsing Error: Invalid input in file. (Check for tabs)",
-		"Parsing Error: Map has invalid characters.",
-		"Invalid Asset: No such file or directory.",
-		"Malloc Error: Unable to allocate memory buffer.",
-		"Parsing Error: Invalid RGB colors.",
-		"Map Error: Map is empty.",
-		"Map Error: Invalid Map - Lonely Spaces.",
-		"Map Error: Invalid Map - Walls Missing.",
+		"Invalid number of arguments (xpm file required)",
+		"File not valid.",
+		"Empty file.",
+		"Duplicate Found.",
+		"Invalid input in file. (Check for tabs)",
+		"Map has invalid characters.",
+		"No such file or directory.",
+		"Unable to allocate memory buffer.",
+		"Invalid RGB colors.",
+		"Map is empty.",
+		"Invalid Map - Lonely Spaces.",
+		"Invalid Map - Walls Missing.",
+		"There must be exactly one player.",
 	};
 
 	return ((char *)errs[ret]);

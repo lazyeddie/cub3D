@@ -6,7 +6,7 @@
 /*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:26:55 by aapostol          #+#    #+#             */
-/*   Updated: 2023/11/26 18:26:56 by aapostol         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:13:35 by aapostol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	ft_error(char *msg)
 {
+	ft_putendl_fd("Error", 2);
 	ft_putendl_fd(msg, 2);
 	exit (1);
 }
