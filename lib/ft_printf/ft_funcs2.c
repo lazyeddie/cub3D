@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_funcs2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpinchas <rpinchas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 11:39:50 by aapostol          #+#    #+#             */
-/*   Updated: 2023/01/23 12:24:19 by aapostol         ###   ########.fr       */
+/*   Updated: 2023/12/06 12:59:58 by rpinchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	counthex(unsigned long n)
 		i++;
 	}
 	return (i);
-}	
+}
 
 int	ft_puthex(unsigned long n, const char *letter)
 {

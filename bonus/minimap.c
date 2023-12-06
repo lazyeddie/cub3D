@@ -6,7 +6,7 @@
 /*   By: rpinchas <rpinchas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 20:18:56 by rpinchas          #+#    #+#             */
-/*   Updated: 2023/11/29 20:18:57 by rpinchas         ###   ########.fr       */
+/*   Updated: 2023/12/06 12:54:46 by rpinchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,16 @@ void	show_player(t_game *game, t_bonus *mini)
 	mini->x = OFFSET + (mini->px - mini->x0) * SCALE;
 	mini->y = OFFSET + (mini->py - mini->y0) * SCALE;
 	draw_tile(game, &game->minimap, RED);
-	if (game->player.dir_x > -0.7 && game->player.dir_x < 0.7)
+	if (game->player.dir_x >= -0.7 && game->player.dir_x <= 0.7)
 	{
-		if (game->player.plane_x > 0)
+		if (game->player.plane_x >= 0)
 			draw_dir(game, mini->x, mini->y - 10, 'N');
 		else
 			draw_dir(game, mini->x, mini->y + 10, 'S');
 	}
-	else if (game->player.dir_y > -0.7 && game->player.dir_y < 0.7)
+	else if (game->player.dir_y >= -0.7 && game->player.dir_y <= 0.7)
 	{
-		if (game->player.plane_y > 0)
+		if (game->player.plane_y >= 0)
 			draw_dir(game, mini->y + 10, mini->x, 'W');
 		else
 			draw_dir(game, mini->y - 10, mini->x, 'E');

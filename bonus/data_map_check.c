@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_map_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpinchas <rpinchas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:24:12 by aapostol          #+#    #+#             */
-/*   Updated: 2023/11/26 18:24:13 by aapostol         ###   ########.fr       */
+/*   Updated: 2023/12/06 11:55:41 by rpinchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	map_check_quali(t_data *data, char **map)
 
 	y = 0;
 	ymax = ft_arrlen(map);
+	if (!ymax)
+		return (INVALID_MAP_ERR0);
 	while (map[y])
 	{
 		x = 0;
