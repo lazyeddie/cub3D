@@ -1,5 +1,6 @@
-# executable
+# executables
 NAME		= cub3D
+BONUS		= cub3D_bonus
 
 # compiler
 CC			= cc
@@ -21,7 +22,7 @@ MLX			= $(MLX_DIR)$(MLX_NAME)
 # include
 INC			=	-I./inc -I./lib/ft_printf -I./lib/libft -I./minilibx-linux
 
-# source files
+# mandatory source files
 SRC			= 	main.c \
 				data_utils.c \
 				data_utils2.c \
@@ -36,20 +37,46 @@ SRC			= 	main.c \
 				raycasting.c \
 				draw.c \
 				moves.c \
-				minimap.c \
-				minimap_utils.c \
 				rotation.c
 SRCDIR		=	src/
 
-# object files
+# mandatory object files
 OBJ			= $(SRC:%.c=%.o)
 OBJDIR		= obj/
 OBJPATH		= $(addprefix $(OBJDIR), $(OBJ))
+
+# bonus source files
+BSRC		=	main.c \
+				data_utils.c \
+				data_utils2.c \
+				data_create.c \
+				data_check.c \
+				data_map_check.c \
+				data_sort.c \
+				free_funcs.c \
+				window.c \
+				image.c \
+				player.c \
+				raycasting.c \
+				moves.c \
+				rotation.c \
+				draw.c \
+				minimap.c \
+				minimap_utils.c
+BDIR		=	bonus/
+
+# bonus object files
+BOBJ			= $(BSRC:%.c=%.o)
+BOBJDIR			= bobj/
+BOBJPATH		= $(addprefix $(BOBJDIR), $(BOBJ))
 
 # dependency files
 DEP			= $(patsubst %.c, %.d, $(SRC))
 DEPDIR		= dep/
 DEPPATH 	= $(addprefix $(DEPDIR), $(DEP))
+
+# # bonus dependency files
+# BDEP			= $(patsubst %.c, %.d, $(BSRC))
 
 # colors
 RED 		='\033[31m'
@@ -79,6 +106,8 @@ RESET		='\033[0m'
 # rules
 all: $(LIB) $(NAME)
 
+bonus: $(LIB) $(BONUS)
+
 home: $(LIB) $(MLX) $(NAME)
 
 $(LIB):
@@ -94,26 +123,40 @@ $(NAME): $(OBJDIR) $(OBJPATH) $(DEPDIR)
 	@$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJPATH) $(LIB) $(MLXFLAGS) $(LINK)
 	@echo $(BG_GREEN) $(XXX)"cub3D ready" $(RESET)
 
+$(BONUS): $(BOBJDIR) $(BOBJPATH) $(DEPDIR)
+	@$(CC) $(CFLAGS) $(INC) -o $(BONUS) $(BOBJPATH) $(LIB) $(MLXFLAGS) $(LINK)
+	@echo $(BG_GREEN) $(XXX)"cub3D_bonus ready" $(RESET)
+
 $(OBJDIR)%.o: $(SRCDIR)%.c
 	$(CC) $(CFLAGS) $(DEPFLAGS) $(INC) -c -o $@ $<
 
+$(BOBJDIR)%.o: $(BDIR)%.c
+	$(CC) $(CFLAGS) $(DEPFLAGS) $(INC) -c -o $@ $<
+
 $(OBJDIR): 
-	@mkdir -p $(OBJDIR)
+	@mkdir -p $@
+
+$(BOBJDIR): 
+	@mkdir -p $@
+
+$(BOBJDIR):
+	@mkdir -p $(BOBJDIR)
 
 $(DEPDIR):
 	@mkdir -p $@
-	@mv $(OBJDIR)*.d $@
+	-@mv $(OBJDIR)*.d $@
+	-@mv $(BOBJDIR)*.d $@
 
 -include $(DEPPATH)
 
 clean:
-	@rm -rf $(OBJDIR) $(DEPDIR)
+	@rm -rf $(OBJDIR) $(BOBJDIR) $(DEPDIR)
 	@make clean -C $(LIB_DIR)
 	@echo $(GRAY) $(CURSIVE) "====> All object files removed successfully!" $(RESET)
 	@echo $(YELLOW)"clean" $(RESET)
 
 fclean: clean
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) $(BONUS)
 	@make fclean -C $(LIB_DIR)
 	@echo $(GRAY) $(CURSIVE) "====> All object files, libraries  and executables removed successfully!" $(RESET)
 	@echo $(BG_YELLOW) $(XXX)"All clean" $(RESET)

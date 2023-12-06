@@ -6,7 +6,7 @@
 /*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:26:31 by aapostol          #+#    #+#             */
-/*   Updated: 2023/12/05 20:47:36 by aapostol         ###   ########.fr       */
+/*   Updated: 2023/11/26 18:26:42 by aapostol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ void	draw_game(t_game *game)
 	game->img = mlx_new_image(game->mlx_ptr, game->win.w, game->win.h);
 	draw_bg(game);
 	raycasting(game);
+	minimap(game);
 	mlx_put_image_to_window(game->mlx_ptr, game->win.ptr, game->img, 0, 0);
 }
