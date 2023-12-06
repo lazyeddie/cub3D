@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpinchas <rpinchas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:30:38 by aapostol          #+#    #+#             */
-/*   Updated: 2023/11/26 18:31:41 by aapostol         ###   ########.fr       */
+/*   Updated: 2023/12/06 13:01:39 by rpinchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	find_wall(t_game *game, t_rays *rays, char **map)
 		if (rays->grid_x < 0 || rays->grid_y < 0 || rays->grid_x >= \
 			game->data->width || rays->grid_y >= game->data->height || \
 			map[(int)rays->grid_y][(int)rays->grid_x] == '1')
-				rays->wall = true;
+			rays->wall = true;
 	}
 	if (rays->vertical == false)
 		rays->wall_dist = rays->step_dist_x - rays->delta_x;

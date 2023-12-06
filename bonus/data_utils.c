@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpinchas <rpinchas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:24:42 by aapostol          #+#    #+#             */
-/*   Updated: 2023/11/26 18:24:43 by aapostol         ###   ########.fr       */
+/*   Updated: 2023/12/06 11:50:23 by rpinchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_arrlen(char **arr)
 	int	i;
 
 	i = 0;
-	while (arr[i])
+	while (arr && arr[i])
 		i++;
 	return (i);
 }

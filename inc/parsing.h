@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpinchas <rpinchas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:36:52 by aapostol          #+#    #+#             */
-/*   Updated: 2023/11/26 18:37:17 by aapostol         ###   ########.fr       */
+/*   Updated: 2023/12/06 11:56:02 by rpinchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef enum e_ret
 	ASSET_ERR,
 	MALLOC_ERR,
 	RGB_ERR,
+	INVALID_MAP_ERR0,
 	INVALID_MAP_ERR1,
 	INVALID_MAP_ERR2,
 }	t_ret;

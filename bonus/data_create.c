@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_create.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpinchas <rpinchas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:24:01 by aapostol          #+#    #+#             */
-/*   Updated: 2023/11/26 18:24:02 by aapostol         ###   ########.fr       */
+/*   Updated: 2023/12/06 11:58:30 by rpinchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ char	*ft_strerror(int ret)
 		"Invalid Asset: No such file or directory.",
 		"Malloc Error: Unable to allocate memory buffer.",
 		"Parsing Error: Invalid RGB colors.",
+		"Map Error: Map is empty.",
 		"Map Error: Invalid Map - Lonely Spaces.",
 		"Map Error: Invalid Map - Walls Missing.",
 	};

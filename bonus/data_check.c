@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpinchas <rpinchas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:23:37 by aapostol          #+#    #+#             */
-/*   Updated: 2023/11/26 18:23:38 by aapostol         ###   ########.fr       */
+/*   Updated: 2023/12/06 12:37:15 by rpinchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	check_asset(t_data *data, char *input, int *i)
 		skip_a(input, i, ' ');
 		skip_word(input, i, true);
 	}
-	else if (input && !asset && input[*i] != '\n')
+	else if (!asset || input[*i] != '\n')
 		return (INPUT_ERR);
 	return (0);
 }
@@ -81,17 +81,18 @@ int	check_data(t_data *data, char *input)
 	int	ret;
 	int	count;
 
-	i = 0;
+	i = -1;
 	count = 0;
-	if (input[i] == '\0')
+	if (input[0] == '\0')
 		return (EMPTY_ERR);
-	while (input[i] && check_counter(data->count))
+	while (input[++i] && check_counter(data->count))
 	{
 		skip_a(input, &i, '\n');
 		ret = check_asset(data, input, &i);
 		if (ret)
 			return (ret);
-		i++;
+		if (input[i] == '\0')
+			return (INVALID_MAP_ERR0);
 	}
 	skip_a(input, &i, '\n');
 	while (input[i])

@@ -1,6 +1,6 @@
-NO ./assets/NO_wall.xpm
-SO ./assets/SO_wall.xpm
-WE ./assets/WE_wall2.xpm
+NO ./assets/NO.xpm
+SO ./assets/SO.xpm
+WE ./assets/WE.xpm
 EA ./assets/EA.xpm
 F 40,114,51
 C 0,191,255

@@ -75,9 +75,6 @@ DEP			= $(patsubst %.c, %.d, $(SRC))
 DEPDIR		= dep/
 DEPPATH 	= $(addprefix $(DEPDIR), $(DEP))
 
-# # bonus dependency files
-# BDEP			= $(patsubst %.c, %.d, $(BSRC))
-
 # colors
 RED 		='\033[31m'
 GREEN		='\033[32m'
@@ -108,22 +105,15 @@ all: $(LIB) $(NAME)
 
 bonus: $(LIB) $(BONUS)
 
-home: $(LIB) $(MLX) $(NAME)
-
 $(LIB):
 	@echo $(GRAY)"Making libftprintf..."$(RESET)
 	@make -sC $(LIB_DIR)
 
-$(MLX):
-	@echo $(GRAY) "Making MiniLibX..." $(RESET)
-	@make -sC $(MLX_DIR)
-	@echo $(YELLOW) "MiniLibX ready" $(RESET)
-
-$(NAME): $(OBJDIR) $(OBJPATH) $(DEPDIR)
+$(NAME): $(OBJDIR) $(OBJPATH)
 	@$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJPATH) $(LIB) $(MLXFLAGS) $(LINK)
 	@echo $(BG_GREEN) $(XXX)"cub3D ready" $(RESET)
 
-$(BONUS): $(BOBJDIR) $(BOBJPATH) $(DEPDIR)
+$(BONUS): $(BOBJDIR) $(BOBJPATH)
 	@$(CC) $(CFLAGS) $(INC) -o $(BONUS) $(BOBJPATH) $(LIB) $(MLXFLAGS) $(LINK)
 	@echo $(BG_GREEN) $(XXX)"cub3D_bonus ready" $(RESET)
 
@@ -139,25 +129,22 @@ $(OBJDIR):
 $(BOBJDIR): 
 	@mkdir -p $@
 
-$(BOBJDIR):
-	@mkdir -p $(BOBJDIR)
-
-$(DEPDIR):
-	@mkdir -p $@
-	-@mv $(OBJDIR)*.d $@
-	-@mv $(BOBJDIR)*.d $@
+#$(DEPDIR):
+#	@mkdir -p $@
+#	-@mv $(OBJDIR)*.d $@
+#	-@mv $(BOBJDIR)*.d $@
 
 -include $(DEPPATH)
 
 clean:
-	@rm -rf $(OBJDIR) $(BOBJDIR) $(DEPDIR)
-	@make clean -C $(LIB_DIR)
+	@rm -rf $(OBJDIR) $(BOBJDIR)
+	@make clean -sC $(LIB_DIR)
 	@echo $(GRAY) $(CURSIVE) "====> All object files removed successfully!" $(RESET)
 	@echo $(YELLOW)"clean" $(RESET)
 
 fclean: clean
 	@rm -rf $(NAME) $(BONUS)
-	@make fclean -C $(LIB_DIR)
+	@make fclean -sC $(LIB_DIR)
 	@echo $(GRAY) $(CURSIVE) "====> All object files, libraries  and executables removed successfully!" $(RESET)
 	@echo $(BG_YELLOW) $(XXX)"All clean" $(RESET)
 
