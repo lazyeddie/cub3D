@@ -6,7 +6,7 @@
 /*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:36:45 by aapostol          #+#    #+#             */
-/*   Updated: 2023/12/06 16:48:59 by aapostol         ###   ########.fr       */
+/*   Updated: 2023/12/07 14:55:34 by aapostol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ void	draw_game(t_game *game);
 
 // moves.c
 void	move_player(t_game *game, t_player *player, int keysym);
-void	move_forward(t_game *game, t_player *player);
-void	move_backward(t_game *game, t_player *player);
-void	move_left(t_game *game, t_player *player);
-void	move_right(t_game *game, t_player *player);
+void	move_sagittal(t_game *game, t_player *player, bool front);
+// void	move_backward(t_game *game, t_player *player);
+// void	move_left(t_game *game, t_player *player);
+void	move_lateral(t_game *game, t_player *player, bool right);
 
 // rotation.c
 void	rotate_left(t_player *player);
