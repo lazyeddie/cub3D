@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_map_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpinchas <rpinchas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:24:12 by aapostol          #+#    #+#             */
-/*   Updated: 2023/12/06 17:10:37 by aapostol         ###   ########.fr       */
+/*   Updated: 2023/12/07 15:31:57 by rpinchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,20 @@ int	valid_field(int c)
 
 int	check_walls(char **map, int x, int y, int ymax)
 {
-	int	xmax;
+	int		xmax;
+	int		xmax_prev;
+	int		xmax_next;
 
 	xmax = ft_strlen(map[y]);
-	if (valid_field(map[y][x]) && (y != 0 && y != ymax - 1) && \
-		(is_abyss(map[y - 1][x]) || is_abyss(map[y + 1][x]) || \
-		is_abyss(map[y][x + 1]) || is_abyss(map[y][x - 1])))
-		return (1);
+	xmax_next = 0;
+	xmax_prev = 0;
+	if (valid_field(map[y][x]) && (y != 0 && y != ymax - 1))
+	{
+		xmax_prev = ft_strlen(map[y - 1]);
+		xmax_next = ft_strlen(map[y + 1]);
+		if (x >= xmax_prev || x >= xmax_next || is_abyss(map, x, y))
+			return (1);
+	}
 	if (((y == 0 || y == ymax - 1) && !is_wall(map[y][x])) || \
 		((x == 0 || x == xmax - 1) && !is_wall(map[y][x])) || \
 		(x != 0 && !is_wall(map[y][x]) && map[y][x - 1] == ' ') || \
@@ -37,21 +44,15 @@ int	check_walls(char **map, int x, int y, int ymax)
 int	lonely_space(char *map)
 {
 	int	i;
-	int	space_count;
-	int	char_count;
 
 	i = 0;
-	space_count = 0;
-	char_count = 0;
 	while (map[i])
 	{
-		if (map[i] == 32 || map[i] == 10)
-			space_count++;
-		else if (map[i] == 48 || map[i] == 49)
-			char_count++;
+		if (map[i] != 32)
+			return (0);
 		i++;
 	}
-	if (space_count > 0 && char_count == 0)
+	if (i == 0 || map[i] == 0)
 		return (1);
 	return (0);
 }

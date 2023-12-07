@@ -6,7 +6,7 @@
 /*   By: rpinchas <rpinchas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:23:37 by aapostol          #+#    #+#             */
-/*   Updated: 2023/12/06 12:37:15 by rpinchas         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:40:02 by rpinchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	check_asset(t_data *data, char *input, int *i)
 int	check_map(char c, char c1, int *count)
 {
 	if (c1 && (c == '\n' && c1 == '\n'))
-		return (1);
+		return (MAP_CHAR_ERR);
 	if (c == 32 || c == 10 || c == 48 || c == 49)
 		return (0);
 	else if ((c == 'N' || c == 'S' || c == 'W' || c == 'E') && *count == 0)
@@ -72,17 +72,15 @@ int	check_map(char c, char c1, int *count)
 		return (0);
 	}
 	else
-		return (1);
+		return (PLAYER_ERR);
 }
 
 int	check_data(t_data *data, char *input)
 {
 	int	i;
 	int	ret;
-	int	count;
 
 	i = -1;
-	count = 0;
 	if (input[0] == '\0')
 		return (EMPTY_ERR);
 	while (input[++i] && check_counter(data->count))
@@ -97,8 +95,9 @@ int	check_data(t_data *data, char *input)
 	skip_a(input, &i, '\n');
 	while (input[i])
 	{
-		if (check_map(input[i], input[i + 1], &count))
-			return (MAP_CHAR_ERR);
+		ret = check_map(input[i], input[i + 1], &data->valid_player);
+		if (ret)
+			return (ret);
 		i++;
 	}
 	return (0);
