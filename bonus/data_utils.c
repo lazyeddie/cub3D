@@ -6,7 +6,7 @@
 /*   By: rpinchas <rpinchas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:24:42 by aapostol          #+#    #+#             */
-/*   Updated: 2023/12/06 11:50:23 by rpinchas         ###   ########.fr       */
+/*   Updated: 2023/12/07 14:30:49 by rpinchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ int	is_wall(int c)
 	return (c == '1' || c == ' ');
 }
 
-int	is_abyss(int c)
+int	is_abyss(char **map, int x, int y)
 {
-	return (!c || c == ' ');
+	return (map[y - 1][x] == 32 || map[y + 1][x] == 32 || \
+		map[y][x + 1] == 32 || map[y][x - 1] == 32);
 }
 
 void	skip_a(char *str, int *i, int a)

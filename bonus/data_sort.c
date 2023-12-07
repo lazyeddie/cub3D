@@ -6,7 +6,7 @@
 /*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:24:29 by aapostol          #+#    #+#             */
-/*   Updated: 2023/12/06 16:28:29 by aapostol         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:47:20 by aapostol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	transfer_dir(t_data *data, char *str, int i)
 		return (FILE_ERR);
 	tmp = ft_strdup(str);
 	if (!tmp)
-		return (ft_strerror(MALLOC_ERR));
+		return (MALLOC_ERR);
 	if (i == 0)
 		data->north = tmp;
 	else if (i == 1)
@@ -75,7 +75,7 @@ int	transfer_assets(t_data *data)
 				return (ASSET_ERR);
 			close(ret);
 			if (transfer_dir(data, data->assarr[i], i))
-				return (ft_strerror(MALLOC_ERR));
+				return (MALLOC_ERR);
 		}
 		ret = 0;
 		if (data->assarr[i] && i == 4)
