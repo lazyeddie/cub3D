@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpinchas <rpinchas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:36:57 by aapostol          #+#    #+#             */
-/*   Updated: 2023/11/26 18:36:58 by aapostol         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:32:57 by rpinchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_data
 	char		*west;
 	char		*east;
 	char		*player;
+	int			valid_player;
 	char		*empty;
 	int			floor[3];
 	int			hex_floor;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpinchas <rpinchas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:36:52 by aapostol          #+#    #+#             */
-/*   Updated: 2023/12/06 16:50:03 by aapostol         ###   ########.fr       */
+/*   Updated: 2023/12/07 14:31:40 by rpinchas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		transfer_assets(t_data *data);
 void	skip_a(char *str, int *i, int a);
 int		ft_arrlen(char **arr);
 int		is_wall(int c);
-int		is_abyss(int c);
+int		is_abyss(char **map, int x, int y);
 int		check_number(char *str);
 
 /*data_utils2.c*/
