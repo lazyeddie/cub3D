@@ -6,7 +6,7 @@
 /*   By: aapostol <aapostol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:32:10 by aapostol          #+#    #+#             */
-/*   Updated: 2023/12/06 16:55:56 by aapostol         ###   ########.fr       */
+/*   Updated: 2023/12/07 15:39:34 by aapostol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	handle_keypress(int keysym, t_game *game)
 	{
 		free_game(game, NULL);
 		ft_putendl_fd(END, 1);
-		exit (0);	
+		exit (0);
 	}
 	else
 	{
